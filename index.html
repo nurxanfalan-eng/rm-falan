@@ -122,6 +122,64 @@
     </div>
   </section>
 
+  <!-- HOME CAMPAIGNS (max 3) -->
+  <section class="section home-campaigns-section" id="home-campaigns">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Kampaniyalar</span>
+        <h2 class="section-title">Xüsusi <span>Təkliflər</span></h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="campaigns-grid home-campaigns-grid">
+
+        <div class="campaign-card" onclick="openCampaignPage('starter')">
+          <div class="campaign-badge-top">Yeni</div>
+          <div class="campaign-icon"><i class="fas fa-star"></i></div>
+          <h3>Başlanğıc Paketi</h3>
+          <p class="campaign-desc">Yeni başlayanlar üçün xüsusi hazırlanmış aylıq paket. İlk ay endirimli qiymətlə zala qoşulun!</p>
+          <div class="campaign-details-preview">
+            <span><i class="fas fa-check"></i> 1 aylıq abunə</span>
+            <span><i class="fas fa-check"></i> Giriş məhdudiyyətsiz</span>
+            <span><i class="fas fa-check"></i> Pulsuz qiymətləndirmə</span>
+          </div>
+          <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="campaign-card featured-campaign" onclick="openCampaignPage('family')">
+          <div class="campaign-badge-top popular">Populyar</div>
+          <div class="campaign-icon"><i class="fas fa-users"></i></div>
+          <h3>Ailə Paketi</h3>
+          <p class="campaign-desc">Ailənizlə birgə məşq edin, daha çox qazanın! 2 və daha çox şəxs üçün xüsusi endirim.</p>
+          <div class="campaign-details-preview">
+            <span><i class="fas fa-check"></i> 2+ şəxs endirim</span>
+            <span><i class="fas fa-check"></i> Bütün növlər daxil</span>
+            <span><i class="fas fa-check"></i> Fərdi məşq planı</span>
+          </div>
+          <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="campaign-card" onclick="openCampaignPage('student')">
+          <div class="campaign-badge-top">Tələbə</div>
+          <div class="campaign-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Tələbə Paketi</h3>
+          <p class="campaign-desc">Tələbə şəhadətnaməsi ilə xüsusi endirimli qiymətlə keyfiyyətli məşq imkanı əldə edin.</p>
+          <div class="campaign-details-preview">
+            <span><i class="fas fa-check"></i> Tələbə endirimi</span>
+            <span><i class="fas fa-check"></i> Çevikli cədvəl</span>
+            <span><i class="fas fa-check"></i> Bütün imkanlar</span>
+          </div>
+          <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+      </div>
+      <div class="home-campaigns-more">
+        <button class="btn btn-outline" onclick="showPage('campaigns')">
+          <i class="fas fa-th-large"></i> Daha Ətraflı Bax
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="section contact-section" id="contact">
     <div class="container">
@@ -188,8 +246,7 @@
       </div>
       <div class="training-grid" id="training-grid">
 
-        <!-- Card 1 -->
-        <div class="training-card" onclick="openTraining('trinajor-kisi')">
+        <div class="training-card" onclick="openTrainingPage('trinajor-kisi')">
           <div class="training-card-img">
             <i class="fas fa-dumbbell training-icon"></i>
           </div>
@@ -201,8 +258,7 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="training-card" onclick="openTraining('trinajor-qadin')">
+        <div class="training-card" onclick="openTrainingPage('trinajor-qadin')">
           <div class="training-card-img">
             <i class="fas fa-heart training-icon"></i>
           </div>
@@ -214,8 +270,7 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="training-card" onclick="openTraining('kikboksinq')">
+        <div class="training-card" onclick="openTrainingPage('kikboksinq')">
           <div class="training-card-img">
             <i class="fas fa-fist-raised training-icon"></i>
           </div>
@@ -227,8 +282,7 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="training-card" onclick="openTraining('taekvondo')">
+        <div class="training-card" onclick="openTrainingPage('taekvondo')">
           <div class="training-card-img">
             <i class="fas fa-shoe-prints training-icon"></i>
           </div>
@@ -240,8 +294,7 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="training-card" onclick="openTraining('mma')">
+        <div class="training-card" onclick="openTrainingPage('mma')">
           <div class="training-card-img">
             <i class="fas fa-fire training-icon"></i>
           </div>
@@ -254,6 +307,26 @@
         </div>
 
       </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================
+     PAGE: TRAINING DETAIL
+============================= -->
+<main id="page-training-detail" class="page">
+  <section class="page-hero small-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1 id="training-detail-hero-title">Məşq Detalı</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" onclick="goBack('training')">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div id="training-detail-content"></div>
     </div>
   </section>
 </main>
@@ -390,7 +463,7 @@
       </div>
       <div class="campaigns-grid">
 
-        <div class="campaign-card" onclick="openCampaign('starter')">
+        <div class="campaign-card" onclick="openCampaignPage('starter')">
           <div class="campaign-badge-top">Yeni</div>
           <div class="campaign-icon"><i class="fas fa-star"></i></div>
           <h3>Başlanğıc Paketi</h3>
@@ -403,7 +476,7 @@
           <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
         </div>
 
-        <div class="campaign-card featured-campaign" onclick="openCampaign('family')">
+        <div class="campaign-card featured-campaign" onclick="openCampaignPage('family')">
           <div class="campaign-badge-top popular">Populyar</div>
           <div class="campaign-icon"><i class="fas fa-users"></i></div>
           <h3>Ailə Paketi</h3>
@@ -416,7 +489,7 @@
           <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
         </div>
 
-        <div class="campaign-card" onclick="openCampaign('student')">
+        <div class="campaign-card" onclick="openCampaignPage('student')">
           <div class="campaign-badge-top">Tələbə</div>
           <div class="campaign-icon"><i class="fas fa-graduation-cap"></i></div>
           <h3>Tələbə Paketi</h3>
@@ -429,7 +502,7 @@
           <button class="btn btn-gold btn-full">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
         </div>
 
-        <div class="campaign-card" onclick="openCampaign('annual')">
+        <div class="campaign-card" onclick="openCampaignPage('annual')">
           <div class="campaign-badge-top">Sərfəli</div>
           <div class="campaign-icon"><i class="fas fa-calendar-alt"></i></div>
           <h3>İllik Paket</h3>
@@ -448,76 +521,32 @@
 </main>
 
 <!-- ============================
-     FOOTER
+     PAGE: CAMPAIGN DETAIL
 ============================= -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="RM İdman Klubu" />
-        <h3>RM İdman Klubu</h3>
-        <p>Güclü ol. Sağlam qal. Çempiyon ol.</p>
-        <div class="footer-socials">
-          <a href="https://wa.me/994559406018" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.instagram.com/rm_sport_club/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://maps.app.goo.gl/JRdnmuJs9ZrhbVMs5" target="_blank" rel="noopener" aria-label="Xəritə"><i class="fas fa-map-marker-alt"></i></a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Səhifələr</h4>
-        <ul>
-          <li><a href="#" onclick="showPage('home');return false;">Ana Səhifə</a></li>
-          <li><a href="#" onclick="showPage('training');return false;">Məşqlər</a></li>
-          <li><a href="#" onclick="showPage('gallery');return false;">Qalerya</a></li>
-          <li><a href="#" onclick="showPage('students');return false;">Tələbələrimiz</a></li>
-          <li><a href="#" onclick="showPage('campaigns');return false;">Kampaniyalar</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Əlaqə</h4>
-        <ul>
-          <li><a href="https://wa.me/994559406018" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +994 55 940 60 18</a></li>
-          <li><a href="https://www.instagram.com/rm_sport_club/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @rm_sport_club</a></li>
-          <li><a href="https://maps.app.goo.gl/JRdnmuJs9ZrhbVMs5" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> Ünvanımız</a></li>
-        </ul>
-      </div>
+<main id="page-campaign-detail" class="page">
+  <section class="page-hero small-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1 id="campaign-detail-hero-title">Kampaniya Detalı</h1>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 RM İdman Klubu. Bütün hüquqlar qorunur.</p>
+  </section>
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" id="campaign-back-btn" onclick="goBackCampaign()">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div id="campaign-detail-content"></div>
     </div>
-  </div>
-</footer>
+  </section>
+</main>
 
 <!-- ============================
-     MODALS
+     LIGHTBOX
 ============================= -->
-
-<!-- Training Modal -->
-<div class="modal-overlay" id="training-modal" onclick="closeModal('training-modal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal('training-modal')"><i class="fas fa-times"></i></button>
-    <div id="training-modal-content"></div>
-  </div>
-</div>
-
-<!-- Campaign Modal -->
-<div class="modal-overlay" id="campaign-modal" onclick="closeModal('campaign-modal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal('campaign-modal')"><i class="fas fa-times"></i></button>
-    <div id="campaign-modal-content"></div>
-  </div>
-</div>
-
-<!-- Lightbox -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
   <img id="lightbox-img" src="" alt="" />
 </div>
-
-<!-- WhatsApp Float Button -->
-<a class="wa-float" href="https://wa.me/994559406018" target="_blank" rel="noopener" aria-label="WhatsApp ilə yazın">
-  <i class="fab fa-whatsapp"></i>
-</a>
 
 <script src="js/app.js"></script>
 </body>

@@ -1,38 +1,43 @@
 'use strict';
 
 /* =========================================
-   PAGE ROUTER — No URL hash/query changes
+   PAGE ROUTER
    ========================================= */
 var currentPage = 'home';
+var previousPage = 'home';
 
 function showPage(pageId) {
-  // Hide all pages
   var pages = document.querySelectorAll('.page');
-  pages.forEach(function(p) {
-    p.classList.remove('active');
-  });
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
 
-  // Show target page
   var target = document.getElementById('page-' + pageId);
   if (target) {
     target.classList.add('active');
+    previousPage = currentPage;
     currentPage = pageId;
   }
 
-  // Update nav active state
   var links = document.querySelectorAll('.nav-link');
-  links.forEach(function(link) {
-    link.classList.remove('active');
-    if (link.getAttribute('data-page') === pageId) {
-      link.classList.add('active');
+  for (var j = 0; j < links.length; j++) {
+    links[j].classList.remove('active');
+    if (links[j].getAttribute('data-page') === pageId) {
+      links[j].classList.add('active');
     }
-  });
+  }
 
-  // Close mobile nav
   closeMobileNav();
+  window.scrollTo(0, 0);
+}
 
-  // Scroll to top instantly
-  window.scrollTo({ top: 0, behavior: 'instant' });
+function goBack(fallback) {
+  showPage(previousPage !== currentPage ? previousPage : (fallback || 'home'));
+}
+
+function goBackCampaign() {
+  var from = document.getElementById('campaign-back-btn').getAttribute('data-from') || 'campaigns';
+  showPage(from);
 }
 
 /* =========================================
@@ -58,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Close nav on outside click
   document.addEventListener('click', function(e) {
     if (navLinks && navLinks.classList.contains('open')) {
       if (!e.target.closest('.navbar')) {
@@ -67,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Navbar scroll effect
   var header = document.getElementById('main-header');
   window.addEventListener('scroll', function() {
     if (header) {
@@ -245,14 +248,16 @@ var campaignData = {
 };
 
 /* =========================================
-   OPEN TRAINING MODAL
+   OPEN TRAINING PAGE (not modal)
    ========================================= */
-function openTraining(id) {
+function openTrainingPage(id) {
   var data = trainingData[id];
   if (!data) return;
 
-  var priceHTML = data.prices.map(function(p) {
-    return '<div class="price-item"><span class="price-label">' + p.label + '</span><span class="price-amount">' + p.amount + '</span></div>';
+  var selectedPlan = 'Aylıq';
+
+  var priceTabsHTML = data.prices.map(function(p, idx) {
+    return '<button class="price-tab' + (idx === 0 ? ' active' : '') + '" data-label="' + p.label + '" onclick="selectPriceTab(this, \'' + id + '\')">' + p.label + '</button>';
   }).join('');
 
   var featuresHTML = data.features.map(function(f) {
@@ -260,110 +265,144 @@ function openTraining(id) {
   }).join('');
 
   var waMsg = encodeURIComponent(
-    '🥊 Salam, RM İdman Klubu!\n\n' +
+    '\uD83E\uDD4A Salam, RM İdman Klubu!\n\n' +
     'Məşq növü: ' + data.title + '\n' +
+    'Plan: ' + selectedPlan + '\n' +
     'Müraciət etmək istəyirəm.\n\n' +
     'Zəhmət olmasa əlaqə saxlayın.'
   );
 
   var html =
-    '<div class="modal-header">' +
-      '<div class="modal-header-icon"><i class="' + data.icon + '"></i></div>' +
-      '<div>' +
-        '<div class="modal-tag">' + data.tag + '</div>' +
-        '<h2>' + data.title + '</h2>' +
-      '</div>' +
-    '</div>' +
-    '<div class="modal-body">' +
-      '<p class="modal-desc">' + data.desc + '</p>' +
-      '<div class="modal-section-title"><i class="fas fa-user-tie" style="margin-right:8px"></i>Məşqçi</div>' +
-      '<div class="modal-trainer">' +
-        '<img src="images/coach.jpg" alt="Məşqçi" class="trainer-avatar" />' +
-        '<div class="trainer-info">' +
-          '<h4>RM İdman Klubu Məşqçisi</h4>' +
-          '<p>Peşəkar idman məşqçisi. Media müsahibələrinin iştirakçısı. Tələbələrini çempionluğa aparan həvəsli məşqçi.</p>' +
+    '<div class="detail-page-card">' +
+      '<div class="detail-header">' +
+        '<div class="detail-header-icon"><i class="' + data.icon + '"></i></div>' +
+        '<div>' +
+          '<div class="detail-tag">' + data.tag + '</div>' +
+          '<h2>' + data.title + '</h2>' +
         '</div>' +
       '</div>' +
-      '<div class="modal-section-title"><i class="fas fa-list-check" style="margin-right:8px"></i>Nə daxildir?</div>' +
-      '<ul class="modal-features-list">' + featuresHTML + '</ul>' +
-      '<div class="modal-section-title"><i class="fas fa-tag" style="margin-right:8px"></i>Qiymətlər</div>' +
-      '<div class="modal-price-grid">' + priceHTML + '</div>' +
-    '</div>' +
-    '<div class="modal-cta">' +
-      '<a href="https://wa.me/994559406018?text=' + waMsg + '" target="_blank" rel="noopener" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp ilə Müraciət Et</a>' +
-      '<button class="btn btn-outline" onclick="closeModal(\'training-modal\')">Bağla</button>' +
+      '<div class="detail-body">' +
+        '<p class="detail-desc">' + data.desc + '</p>' +
+        '<div class="detail-section-title"><i class="fas fa-user-tie"></i> Məşqçi</div>' +
+        '<div class="detail-trainer">' +
+          '<img src="images/coach.jpg" alt="Məşqçi" class="trainer-avatar" />' +
+          '<div class="trainer-info">' +
+            '<h4>RM İdman Klubu Məşqçisi</h4>' +
+            '<p>Peşəkar idman məşqçisi. Media müsahibələrinin iştirakçısı. Tələbələrini çempionluğa aparan həvəsli məşqçi.</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="detail-section-title"><i class="fas fa-list-check"></i> Nə daxildir?</div>' +
+        '<ul class="detail-features-list">' + featuresHTML + '</ul>' +
+        '<div class="detail-section-title"><i class="fas fa-tag"></i> Abunəlik Növü Seçin</div>' +
+        '<div class="price-tabs" id="price-tabs-' + id + '">' + priceTabsHTML + '</div>' +
+        '<div class="detail-section-title" style="margin-top:20px"><i class="fas fa-info-circle"></i> Qiymət Məlumatı</div>' +
+        '<div class="detail-price-info">Dəqiq qiymət məlumatı üçün WhatsApp üzərindən əlaqə saxlayın.</div>' +
+      '</div>' +
+      '<div class="detail-cta">' +
+        '<a href="https://wa.me/994559406018?text=' + waMsg + '" target="_blank" rel="noopener" class="btn btn-gold" id="wa-link-' + id + '"><i class="fab fa-whatsapp"></i> WhatsApp ilə Müraciət Et</a>' +
+      '</div>' +
     '</div>';
 
-  document.getElementById('training-modal-content').innerHTML = html;
-  document.getElementById('training-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.getElementById('training-detail-hero-title').textContent = data.title;
+  document.getElementById('training-detail-content').innerHTML = html;
+
+  previousPage = currentPage;
+  currentPage = 'training-detail';
+
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+  document.getElementById('page-training-detail').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function selectPriceTab(btn, trainingId) {
+  var tabs = btn.closest('.price-tabs').querySelectorAll('.price-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
+  btn.classList.add('active');
+
+  var selectedLabel = btn.getAttribute('data-label');
+  var data = trainingData[trainingId];
+  if (!data) return;
+
+  var waMsg = encodeURIComponent(
+    '\uD83E\uDD4A Salam, RM İdman Klubu!\n\n' +
+    'Məşq növü: ' + data.title + '\n' +
+    'Plan: ' + selectedLabel + '\n' +
+    'Müraciət etmək istəyirəm.\n\n' +
+    'Zəhmət olmasa əlaqə saxlayın.'
+  );
+
+  var waLink = document.getElementById('wa-link-' + trainingId);
+  if (waLink) {
+    waLink.href = 'https://wa.me/994559406018?text=' + waMsg;
+  }
 }
 
 /* =========================================
-   OPEN CAMPAIGN MODAL
+   OPEN CAMPAIGN PAGE (not modal)
    ========================================= */
-function openCampaign(id) {
+var campaignFromPage = 'campaigns';
+
+function openCampaignPage(id, fromPage) {
   var data = campaignData[id];
   if (!data) return;
+
+  campaignFromPage = fromPage || (currentPage === 'home' ? 'home' : 'campaigns');
 
   var featuresHTML = data.features.map(function(f) {
     return '<li><i class="fas fa-check-circle"></i> ' + f + '</li>';
   }).join('');
 
   var waMsg = encodeURIComponent(
-    '🎯 Salam, RM İdman Klubu!\n\n' +
+    '\uD83C\uDFAF Salam, RM İdman Klubu!\n\n' +
     'Kampaniya: ' + data.title + '\n' +
     'Bu kampaniya haqqında məlumat almaq istəyirəm.\n\n' +
     'Zəhmət olmasa əlaqə saxlayın.'
   );
 
   var html =
-    '<div class="modal-header">' +
-      '<div class="modal-header-icon"><i class="' + data.icon + '"></i></div>' +
-      '<div>' +
-        '<div class="modal-tag">' + data.badge + '</div>' +
-        '<h2>' + data.title + '</h2>' +
+    '<div class="detail-page-card">' +
+      '<div class="detail-header">' +
+        '<div class="detail-header-icon"><i class="' + data.icon + '"></i></div>' +
+        '<div>' +
+          '<div class="detail-tag">' + data.badge + '</div>' +
+          '<h2>' + data.title + '</h2>' +
+        '</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="modal-body">' +
-      '<p class="modal-desc">' + data.desc + '</p>' +
-      '<div class="modal-section-title"><i class="fas fa-gift" style="margin-right:8px"></i>Paketə daxildir</div>' +
-      '<ul class="modal-features-list">' + featuresHTML + '</ul>' +
-      '<div class="modal-section-title"><i class="fas fa-info-circle" style="margin-right:8px"></i>Qiymət Məlumatı</div>' +
-      '<div style="background:var(--dark3);border:1px solid rgba(212,175,55,0.2);border-radius:10px;padding:18px;color:var(--gray-light);font-size:0.9rem;line-height:1.7;">' +
-        '<i class="fas fa-phone-alt" style="color:var(--gold);margin-right:8px"></i>' +
-        'Dəqiq qiymət məlumatı üçün bizimlə əlaqə saxlayın. Fərdi təkliflər hazırlayırıq.' +
+      '<div class="detail-body">' +
+        '<p class="detail-desc">' + data.desc + '</p>' +
+        '<div class="detail-section-title"><i class="fas fa-gift"></i> Paketə daxildir</div>' +
+        '<ul class="detail-features-list">' + featuresHTML + '</ul>' +
+        '<div class="detail-section-title"><i class="fas fa-info-circle"></i> Qiymət Məlumatı</div>' +
+        '<div class="detail-price-info"><i class="fas fa-phone-alt" style="color:var(--gold);margin-right:8px"></i>Dəqiq qiymət məlumatı üçün bizimlə əlaqə saxlayın. Fərdi təkliflər hazırlayırıq.</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="modal-cta">' +
-      '<a href="https://wa.me/994559406018?text=' + waMsg + '" target="_blank" rel="noopener" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp ilə Müraciət Et</a>' +
-      '<button class="btn btn-outline" onclick="closeModal(\'campaign-modal\')">Bağla</button>' +
+      '<div class="detail-cta">' +
+        '<a href="https://wa.me/994559406018?text=' + waMsg + '" target="_blank" rel="noopener" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp ilə Müraciət Et</a>' +
+      '</div>' +
     '</div>';
 
-  document.getElementById('campaign-modal-content').innerHTML = html;
-  document.getElementById('campaign-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
+  document.getElementById('campaign-detail-hero-title').textContent = data.title;
+  document.getElementById('campaign-detail-content').innerHTML = html;
 
-/* =========================================
-   CLOSE MODAL
-   ========================================= */
-function closeModal(id) {
-  var modal = document.getElementById(id);
-  if (modal) {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
+  var backBtn = document.getElementById('campaign-back-btn');
+  if (backBtn) {
+    backBtn.setAttribute('data-from', campaignFromPage);
   }
-}
 
-// Close modals with Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeModal('training-modal');
-    closeModal('campaign-modal');
-    closeLightbox();
+  previousPage = currentPage;
+  currentPage = 'campaign-detail';
+
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
   }
-});
+  document.getElementById('page-campaign-detail').classList.add('active');
+  window.scrollTo(0, 0);
+}
 
 /* =========================================
    LIGHTBOX
@@ -387,15 +426,16 @@ function closeLightbox() {
   }
 }
 
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeLightbox();
+  }
+});
+
 /* =========================================
-   PREVENT BACK/FORWARD URL CHANGES
+   PREVENT URL CHANGES
    ========================================= */
-// Override history methods to prevent any URL change
-(function() {
-  var noop = function() {};
-  // Keep history methods but prevent any state that would change visible URL
-  window.addEventListener('popstate', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  });
-})();
+window.addEventListener('popstate', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+});

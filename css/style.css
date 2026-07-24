@@ -21,7 +21,7 @@
   --white: #FFFFFF;
   --whatsapp: #25D366;
   --instagram: #E1306C;
-  --transition: 0.3s ease;
+  --transition: 0.25s ease;
   --shadow: 0 8px 32px rgba(0,0,0,0.4);
   --shadow-gold: 0 4px 24px rgba(212,175,55,0.25);
   --radius: 16px;
@@ -30,7 +30,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
 }
 
@@ -83,12 +82,12 @@ button {
    SECTION
    ========================================= */
 .section {
-  padding: 80px 0;
+  padding: 70px 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 
 .section-tag {
@@ -220,7 +219,7 @@ button {
 .nav-logo img {
   width: 42px;
   height: 42px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -294,15 +293,15 @@ button {
   display: none;
   min-height: 100vh;
   padding-top: var(--navbar-h);
-  animation: fadeIn 0.35s ease;
 }
 
 .page.active {
   display: block;
+  animation: fadeIn 0.28s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -343,18 +342,16 @@ button {
   padding: 40px 20px;
 }
 
+/* Hero logo - dairəvi, sabit (animasiyasız) */
 .hero-logo {
   width: 110px;
   height: 110px;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 50%;
   margin: 0 auto 24px;
-  animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(212,175,55,0.4));
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  border: 3px solid rgba(212,175,55,0.5);
+  box-shadow: 0 0 24px rgba(212,175,55,0.3);
+  display: block;
 }
 
 .hero-title {
@@ -407,7 +404,7 @@ button {
    ========================================= */
 .small-hero {
   position: relative;
-  height: 280px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -438,10 +435,10 @@ button {
 
 .page-hero-content h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 900;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .page-hero-content p {
@@ -499,11 +496,11 @@ button {
   height: 460px;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .about-img-wrap:hover img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .about-badge {
@@ -523,43 +520,46 @@ button {
 }
 
 /* =========================================
-   HOURS SECTION
+   HOURS SECTION — kiçildilmiş
    ========================================= */
 .hours-section {
   background: var(--dark2);
+  padding: 50px 0;
 }
 
 .hours-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 16px;
+  max-width: 820px;
+  margin: 0 auto;
 }
 
 .hours-card {
   background: var(--dark3);
   border: 1px solid rgba(212,175,55,0.15);
-  border-radius: var(--radius);
-  padding: 40px 28px;
+  border-radius: var(--radius-sm);
+  padding: 22px 18px;
   text-align: center;
   transition: all var(--transition);
 }
 
 .hours-card:hover {
   border-color: var(--gold);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-gold);
 }
 
 .hours-icon {
-  width: 64px;
-  height: 64px;
+  width: 44px;
+  height: 44px;
   background: rgba(212,175,55,0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 1.6rem;
+  margin: 0 auto 12px;
+  font-size: 1.1rem;
   color: var(--gold);
   transition: all var(--transition);
 }
@@ -572,24 +572,24 @@ button {
 .hours-card h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.88rem;
   color: var(--white);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hours-time {
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--gold);
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .hours-badge {
   display: inline-block;
-  padding: 4px 14px;
+  padding: 3px 12px;
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
 }
 
@@ -597,6 +597,22 @@ button {
   background: rgba(37,211,102,0.15);
   color: #25D366;
   border: 1px solid rgba(37,211,102,0.3);
+}
+
+/* =========================================
+   HOME CAMPAIGNS SECTION
+   ========================================= */
+.home-campaigns-section {
+  background: var(--black);
+}
+
+.home-campaigns-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.home-campaigns-more {
+  text-align: center;
+  margin-top: 32px;
 }
 
 /* =========================================
@@ -628,13 +644,13 @@ button {
 }
 
 .contact-icon {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   flex-shrink: 0;
   transition: all var(--transition);
 }
@@ -688,7 +704,7 @@ button {
   display: block;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--white);
   white-space: nowrap;
   overflow: hidden;
@@ -728,13 +744,13 @@ button {
 
 .training-card:hover {
   border-color: var(--gold);
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-gold);
 }
 
 .training-card-img {
   background: linear-gradient(135deg, var(--dark3), var(--dark2));
-  height: 160px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -750,7 +766,7 @@ button {
 }
 
 .training-icon {
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: var(--gold);
   position: relative;
   z-index: 1;
@@ -758,11 +774,11 @@ button {
 }
 
 .training-card:hover .training-icon {
-  transform: scale(1.15);
+  transform: scale(1.12);
 }
 
 .training-card-body {
-  padding: 24px;
+  padding: 22px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -785,14 +801,14 @@ button {
 .training-card-body h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--white);
 }
 
 .training-card-body p {
   color: var(--gray);
-  font-size: 0.88rem;
-  line-height: 1.7;
+  font-size: 0.87rem;
+  line-height: 1.65;
   flex: 1;
 }
 
@@ -818,11 +834,11 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .gallery-item:hover img {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .gallery-overlay {
@@ -878,7 +894,7 @@ button {
 }
 
 .student-img-wrap {
-  height: 340px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -887,21 +903,21 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: top;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .student-card:hover .student-img-wrap img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .student-info {
-  padding: 24px;
+  padding: 22px;
 }
 
 .student-info h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--gold);
   margin-bottom: 10px;
 }
@@ -940,7 +956,7 @@ button {
 }
 
 .highlight-content {
-  padding: 32px;
+  padding: 28px;
 }
 
 .highlight-content i {
@@ -952,10 +968,10 @@ button {
 
 .highlight-content p {
   color: var(--gray-light);
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.8;
   font-style: italic;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .student-stat-row {
@@ -971,14 +987,14 @@ button {
 
 .stat-num {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 900;
   color: var(--gold);
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--gray);
   font-weight: 600;
   text-transform: uppercase;
@@ -1000,17 +1016,17 @@ button {
   background: var(--dark2);
   border: 1px solid rgba(212,175,55,0.15);
   border-radius: var(--radius);
-  padding: 36px 28px 28px;
+  padding: 32px 24px 24px;
   cursor: pointer;
   transition: all var(--transition);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .campaign-card:hover {
   border-color: var(--gold);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-gold);
 }
 
@@ -1021,13 +1037,13 @@ button {
 
 .campaign-badge-top {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   color: var(--black);
-  padding: 4px 14px;
+  padding: 4px 12px;
   border-radius: 50px;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -1039,14 +1055,14 @@ button {
 }
 
 .campaign-icon {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   background: rgba(212,175,55,0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--gold);
   transition: all var(--transition);
 }
@@ -1060,21 +1076,21 @@ button {
 .campaign-card h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--white);
 }
 
 .campaign-desc {
   color: var(--gray);
-  font-size: 0.88rem;
-  line-height: 1.7;
+  font-size: 0.87rem;
+  line-height: 1.65;
   flex: 1;
 }
 
 .campaign-details-preview {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .campaign-details-preview span {
@@ -1082,196 +1098,60 @@ button {
   align-items: center;
   gap: 8px;
   color: var(--gray-light);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
 }
 
 .campaign-details-preview span i {
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 /* =========================================
-   FOOTER
+   BACK BUTTON
    ========================================= */
-.footer {
-  background: var(--dark);
-  border-top: 1px solid rgba(212,175,55,0.12);
-  padding: 60px 0 0;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  padding-bottom: 40px;
-}
-
-.footer-brand img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 12px;
-}
-
-.footer-brand h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-
-.footer-brand p {
-  color: var(--gray);
-  font-size: 0.88rem;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 12px;
-}
-
-.footer-socials a {
-  width: 40px;
-  height: 40px;
-  background: var(--dark3);
-  border: 1px solid rgba(212,175,55,0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray);
-  font-size: 1rem;
-  transition: all var(--transition);
-}
-
-.footer-socials a:hover {
-  background: var(--gold);
-  color: var(--black);
-  border-color: var(--gold);
-  transform: translateY(-2px);
-}
-
-.footer-links h4,
-.footer-contact h4 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--white);
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(212,175,55,0.15);
-}
-
-.footer-links li,
-.footer-contact li {
-  margin-bottom: 10px;
-}
-
-.footer-links a,
-.footer-contact a {
-  color: var(--gray);
-  font-size: 0.88rem;
-  transition: color var(--transition);
-  display: flex;
+.back-btn {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-
-.footer-links a:hover,
-.footer-contact a:hover {
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
   color: var(--gold);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 32px;
+  transition: all var(--transition);
+  cursor: pointer;
 }
 
-.footer-contact a i {
-  width: 16px;
-  color: var(--gold);
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 20px 0;
-  text-align: center;
-}
-
-.footer-bottom p {
-  color: var(--gray);
-  font-size: 0.82rem;
+.back-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+  transform: translateX(-3px);
 }
 
 /* =========================================
-   MODALS
+   DETAIL PAGE CARD (Training & Campaign)
    ========================================= */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeIn 0.25s ease;
-}
-
-.modal-overlay.open {
-  display: flex;
-}
-
-.modal-box {
-  position: relative;
+.detail-page-card {
   background: var(--dark2);
-  border: 1px solid rgba(212,175,55,0.25);
+  border: 1px solid rgba(212,175,55,0.2);
   border-radius: var(--radius);
-  width: 100%;
-  max-width: 680px;
-  max-height: 85vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-  animation: slideUp 0.3s ease;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-light);
-  font-size: 0.9rem;
-  transition: all var(--transition);
-  z-index: 10;
-}
-
-.modal-close:hover {
-  background: rgba(212,175,55,0.2);
-  color: var(--gold);
-}
-
-/* Modal content styles */
-.modal-header {
-  padding: 36px 36px 0;
+.detail-header {
+  padding: 32px 32px 0;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding-right: 60px;
 }
 
-.modal-header-icon {
+.detail-header-icon {
   width: 60px;
   height: 60px;
   background: rgba(212,175,55,0.15);
@@ -1284,14 +1164,14 @@ button {
   flex-shrink: 0;
 }
 
-.modal-header h2 {
+.detail-header h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 1.5rem;
   color: var(--white);
 }
 
-.modal-header .modal-tag {
+.detail-tag {
   display: inline-block;
   background: rgba(212,175,55,0.1);
   color: var(--gold);
@@ -1301,81 +1181,47 @@ button {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
-.modal-body {
-  padding: 24px 36px;
+.detail-body {
+  padding: 24px 32px;
 }
 
-.modal-desc {
+.detail-desc {
   color: var(--gray-light);
   font-size: 0.95rem;
   line-height: 1.8;
   margin-bottom: 24px;
 }
 
-.modal-section-title {
+.detail-section-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--gold);
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.modal-price-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.price-item {
+.detail-trainer {
   background: var(--dark3);
   border: 1px solid rgba(212,175,55,0.15);
   border-radius: var(--radius-sm);
-  padding: 16px;
-  text-align: center;
-  transition: all var(--transition);
-}
-
-.price-item:hover {
-  border-color: var(--gold);
-}
-
-.price-item .price-label {
-  display: block;
-  font-size: 0.78rem;
-  color: var(--gray);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.price-item .price-amount {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--gold);
-}
-
-.modal-trainer {
-  background: var(--dark3);
-  border: 1px solid rgba(212,175,55,0.15);
-  border-radius: var(--radius);
-  padding: 20px;
+  padding: 18px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
   margin-bottom: 24px;
 }
 
 .trainer-avatar {
-  width: 72px;
-  height: 72px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
@@ -1388,22 +1234,23 @@ button {
   font-weight: 700;
   color: var(--white);
   margin-bottom: 4px;
+  font-size: 0.95rem;
 }
 
 .trainer-info p {
   color: var(--gray);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   line-height: 1.6;
 }
 
-.modal-features-list {
+.detail-features-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 24px;
 }
 
-.modal-features-list li {
+.detail-features-list li {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1411,14 +1258,56 @@ button {
   font-size: 0.9rem;
 }
 
-.modal-features-list li i {
+.detail-features-list li i {
   color: var(--gold);
   font-size: 0.85rem;
   width: 16px;
 }
 
-.modal-cta {
-  padding: 0 36px 36px;
+/* Price Tabs */
+.price-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.price-tab {
+  padding: 9px 22px;
+  border-radius: 50px;
+  border: 2px solid rgba(212,175,55,0.3);
+  background: transparent;
+  color: var(--gray-light);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.price-tab:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.price-tab.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+.detail-price-info {
+  background: var(--dark3);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  color: var(--gray-light);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.detail-cta {
+  padding: 0 32px 32px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -1464,43 +1353,12 @@ button {
   color: white;
   font-size: 1.1rem;
   transition: all var(--transition);
+  cursor: pointer;
 }
 
 .lightbox-close:hover {
   background: var(--gold);
   color: var(--black);
-}
-
-/* =========================================
-   WHATSAPP FLOAT BUTTON
-   ========================================= */
-.wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 900;
-  width: 58px;
-  height: 58px;
-  background: var(--whatsapp);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: white;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-  transition: all var(--transition);
-  animation: pulse-wa 2.5s infinite;
-}
-
-.wa-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 28px rgba(37,211,102,0.7);
-}
-
-@keyframes pulse-wa {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
-  50% { box-shadow: 0 4px 32px rgba(37,211,102,0.8); }
 }
 
 /* =========================================
@@ -1517,13 +1375,14 @@ button {
   }
 
   .about-img-wrap img {
-    height: 340px;
+    height: 300px;
   }
 
   .hours-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    max-width: 360px;
     margin: 0 auto;
+    gap: 12px;
   }
 
   .contact-grid {
@@ -1538,17 +1397,8 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-
-  .modal-price-grid {
-    grid-template-columns: 1fr 1fr;
+  .home-campaigns-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1561,7 +1411,11 @@ button {
   }
 
   .section {
-    padding: 56px 0;
+    padding: 48px 0;
+  }
+
+  .hours-section {
+    padding: 40px 0;
   }
 
   /* NAV MOBILE */
@@ -1613,6 +1467,11 @@ button {
     justify-content: center;
   }
 
+  .hero-logo {
+    width: 90px;
+    height: 90px;
+  }
+
   .training-grid {
     grid-template-columns: 1fr;
   }
@@ -1629,35 +1488,29 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .footer-grid {
+  .home-campaigns-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
   }
 
-  .modal-header {
-    padding: 24px 20px 0;
-    padding-right: 52px;
+  .detail-header {
+    padding: 22px 18px 0;
   }
 
-  .modal-body {
-    padding: 20px;
+  .detail-body {
+    padding: 18px;
   }
 
-  .modal-cta {
-    padding: 0 20px 24px;
+  .detail-cta {
+    padding: 0 18px 22px;
     flex-direction: column;
   }
 
-  .modal-cta .btn {
+  .detail-cta .btn {
     width: 100%;
     justify-content: center;
   }
 
-  .modal-price-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-trainer {
+  .detail-trainer {
     flex-direction: column;
     text-align: center;
   }
@@ -1668,19 +1521,20 @@ button {
   }
 
   .contact-value {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
   }
 
   .hours-grid {
     max-width: 100%;
   }
 
-  .wa-float {
-    bottom: 20px;
-    right: 16px;
-    width: 52px;
-    height: 52px;
-    font-size: 1.3rem;
+  .price-tabs {
+    gap: 8px;
+  }
+
+  .price-tab {
+    padding: 8px 16px;
+    font-size: 0.82rem;
   }
 }
 
