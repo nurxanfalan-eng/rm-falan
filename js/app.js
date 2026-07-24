@@ -131,14 +131,32 @@ document.addEventListener('DOMContentLoaded', function() {
         closeMobileNav();
       }
     }
-  });
+  }, { passive: true });
 
+  // Optimized scroll with rAF to avoid jank
   var header = document.getElementById('main-header');
+  var scrollTicking = false;
   window.addEventListener('scroll', function() {
-    if (header) {
-      header.classList.toggle('scrolled', window.scrollY > 10);
+    if (!scrollTicking) {
+      window.requestAnimationFrame(function() {
+        if (header) {
+          header.classList.toggle('scrolled', window.scrollY > 10);
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
   }, { passive: true });
+
+  // Preload gallery images for faster lightbox open
+  var galleryImgs = document.querySelectorAll('#gallery-grid .gallery-item img');
+  galleryImgs.forEach(function(img) {
+    var preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = img.getAttribute('src');
+    document.head.appendChild(preloadLink);
+  });
 });
 
 /* =========================================
@@ -429,17 +447,44 @@ function openCampaignPage(id) {
 }
 
 /* =========================================
-   LIGHTBOX
+   LIGHTBOX (with navigation)
    ========================================= */
-function openLightbox(el) {
-  var img = el.querySelector('img');
-  if (!img) return;
+var lightboxImages = [];
+var lightboxIndex = 0;
+
+function buildLightboxImages() {
+  lightboxImages = [];
+  var items = document.querySelectorAll('#gallery-grid .gallery-item img');
+  for (var i = 0; i < items.length; i++) {
+    lightboxImages.push({ src: items[i].src, alt: items[i].alt });
+  }
+}
+
+function openLightbox(index) {
+  buildLightboxImages();
+  if (!lightboxImages.length) return;
+  lightboxIndex = index;
+  _showLightboxImage();
   var lightbox = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lightbox-img');
-  lbImg.src = img.src;
-  lbImg.alt = img.alt;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function _showLightboxImage() {
+  var lbImg = document.getElementById('lightbox-img');
+  var counter = document.getElementById('lightbox-counter');
+  var item = lightboxImages[lightboxIndex];
+  if (!item) return;
+  lbImg.src = item.src;
+  lbImg.alt = item.alt;
+  if (counter) {
+    counter.textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+  }
+}
+
+function lightboxNav(dir) {
+  lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+  _showLightboxImage();
 }
 
 function closeLightbox() {
@@ -451,8 +496,30 @@ function closeLightbox() {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeLightbox();
+  if (e.key === 'Escape') { closeLightbox(); }
+  if (e.key === 'ArrowRight') { lightboxNav(1); }
+  if (e.key === 'ArrowLeft') { lightboxNav(-1); }
+});
+
+// Lightbox: backdrop click to close (only on overlay, not nav buttons/img)
+document.addEventListener('DOMContentLoaded', function() {
+  var lb = document.getElementById('lightbox');
+  if (lb) {
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) { closeLightbox(); }
+    });
+  }
+
+  // Touch/swipe support for lightbox
+  var touchStartX = 0;
+  if (lb) {
+    lb.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    lb.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { lightboxNav(dx < 0 ? 1 : -1); }
+    }, { passive: true });
   }
 });
 

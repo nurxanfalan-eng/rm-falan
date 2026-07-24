@@ -8,6 +8,23 @@
   padding: 0;
 }
 
+/* Performance: GPU compositing for animated elements */
+.hero-logo,
+.hero-scroll,
+.animate-fade-up,
+.animate-fade-up-delay,
+.animate-fade-up-delay2 {
+  will-change: transform, opacity;
+}
+
+/* Reduce layout thrash on static elements */
+.gallery-item img,
+.about-img-wrap img,
+.student-img-wrap img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 :root {
   --gold: #D4AF37;
   --gold-light: #F0D060;
@@ -341,11 +358,12 @@ button {
   display: none;
   min-height: 100vh;
   padding-top: var(--navbar-h);
+  contain: layout style;
 }
 
 .page.active {
   display: block;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.25s ease;
 }
 
 @keyframes fadeIn {
@@ -433,13 +451,13 @@ button {
 
 /* Hero logo */
 .hero-logo {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 0 auto 18px;
-  border: 3px solid rgba(212,175,55,0.5);
-  box-shadow: 0 0 32px rgba(212,175,55,0.3);
+  margin: 0 auto 22px;
+  border: 4px solid rgba(212,175,55,0.6);
+  box-shadow: 0 0 48px rgba(212,175,55,0.4), 0 0 80px rgba(212,175,55,0.15);
   display: block;
   animation: subtleFloat 4s ease-in-out infinite;
   will-change: transform;
@@ -1056,7 +1074,7 @@ button {
    ========================================= */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
@@ -1600,6 +1618,56 @@ button {
   color: var(--black);
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  transition: all var(--transition);
+  cursor: pointer;
+  z-index: 3001;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+.lightbox-nav:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: var(--gold);
+  padding: 5px 16px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  backdrop-filter: blur(4px);
+}
+
 /* =========================================
    RESPONSIVE – TABLET (≤900px)
    ========================================= */
@@ -1629,6 +1697,10 @@ button {
   }
 
   .training-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1711,8 +1783,8 @@ button {
   }
 
   .hero-logo {
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: 140px;
   }
 
   .training-grid {
@@ -1720,7 +1792,7 @@ button {
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .students-grid {
@@ -1800,5 +1872,9 @@ button {
   .btn {
     padding: 12px 20px;
     font-size: 0.82rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
 }
