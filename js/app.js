@@ -572,3 +572,53 @@ window.addEventListener('popstate', function(e) {
   e.preventDefault();
   e.stopPropagation();
 });
+
+/* =========================================
+   PERFORMANCE: IMAGE ERROR HANDLING
+   ========================================= */
+document.addEventListener('DOMContentLoaded', function() {
+  /* Handle broken images gracefully */
+  var imgs = document.querySelectorAll('img');
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('error', function() {
+      this.style.background = 'var(--dark3)';
+      this.style.minHeight = '120px';
+    });
+  }
+
+  /* IntersectionObserver for lazy loading performance */
+  if ('IntersectionObserver' in window) {
+    var lazyImgs = document.querySelectorAll('img[loading="lazy"]');
+    var imgObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            delete img.dataset.src;
+          }
+          imgObserver.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+
+    lazyImgs.forEach(function(img) {
+      imgObserver.observe(img);
+    });
+  }
+});
+
+/* =========================================
+   PERFORMANCE: PASSIVE SCROLL & RESIZE
+   ========================================= */
+(function() {
+  /* Debounced resize handler */
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      /* Force reflow only when needed */
+      document.body.getBoundingClientRect();
+    }, 150);
+  }, { passive: true });
+})();

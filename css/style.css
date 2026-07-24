@@ -477,7 +477,7 @@ button {
   text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
-/* Azərbaycan bayrağı rəngləri: RM=mavi, İdman=qırmızı, Klubu=lime */
+/* Azərbaycan bayrağı rəngləri: RM=mavi, İdman=qırmızı, Klubu=göy */
 .hero-rm {
   color: var(--az-blue);
   display: inline;
@@ -491,7 +491,7 @@ button {
 }
 
 .hero-klubu {
-  color: var(--lime);
+  color: var(--az-blue);
   display: block;
 }
 
@@ -579,6 +579,17 @@ button {
 /* =========================================
    ABOUT SECTION
    ========================================= */
+/* About bölməsi başlığında Azərbaycan bayrağı rəngləri */
+.about-rm {
+  color: var(--az-blue);
+}
+.about-idman {
+  color: var(--az-red);
+}
+.about-klubu {
+  color: var(--az-blue);
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1841,4 +1852,59 @@ button {
   .hours-grid {
     max-width: 100%;
   }
+}
+
+/* =========================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================= */
+
+/* GPU compositing for gallery images */
+.gallery-item,
+.students-gallery-item {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth image loading - prevent layout shift */
+.gallery-item img,
+.students-gallery-item img {
+  content-visibility: auto;
+}
+
+/* Reduce paint area for overlays */
+.gallery-overlay,
+.students-gallery-overlay {
+  will-change: opacity;
+}
+
+/* Prevent font swap flicker */
+@font-face {
+  font-display: swap;
+}
+
+/* Touch action optimization for mobile */
+.students-gallery-grid,
+.gallery-grid {
+  touch-action: pan-y;
+}
+
+/* Optimize campaign cards */
+.campaign-card,
+.training-card,
+.hours-card,
+.contact-card {
+  transform: translateZ(0);
+}
+
+/* Reduce repaints on hover */
+.campaign-card:hover,
+.training-card:hover,
+.contact-card:hover {
+  will-change: transform;
+}
+
+/* Image aspect ratio hints to prevent CLS */
+.students-gallery-item img,
+.gallery-item img {
+  aspect-ratio: 4/3;
 }
