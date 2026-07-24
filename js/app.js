@@ -177,7 +177,7 @@ var trainingData = {
     icon: 'fas fa-heart',
     tag: 'Fitnes',
     title: 'Trinajor (Qadın)',
-    desc: 'Qadınlar üçün nəzərdə tutulmuş xüsusi fitnes proqramı. Arıqlamaq, elastiklik qazanmaq, sağlam qalmaq və özünüzə olan imanı artırmaq üçün uygun bir mühit. Rahat, təhlükəsiz və motivasiyalı məşq mühiti ilə hədəflərinizə çatın.',
+    desc: 'Qadınlar üçün nəzərdə tutulmuş xüsusi fitnes proqramı. Arıqlamaq, elastiklik qazanmaq, sağlam qalmaq və özünüzə olan inamı artırmaq üçün uyğun bir mühit. Rahat, təhlükəsiz və motivasiyalı məşq mühiti ilə hədəflərinizə çatın.',
     prices: [
       { label: 'Aylıq', amount: 'Müraciət Et' },
       { label: '3 Aylıq', amount: 'Müraciət Et' },
@@ -197,7 +197,7 @@ var trainingData = {
     icon: 'fas fa-fist-raised',
     tag: 'Döyüş Sənəti',
     title: 'Kikboksinq',
-    desc: 'Boks və karatenin birləşməsindən yaranan dinamik döyüş sənəti. Kikboksinq həm özünmüdafiə bacarıqları, həm güc və çeviklik, həm də möhtəşəm bir kondisiya məşqi üçün ideal seçimdir. Uşaqlardan böyüklərə qədər hər yaş qrupu üçün uygundur.',
+    desc: 'Boks və karatenin birləşməsindən yaranan dinamik döyüş sənəti. Kikboksinq həm özünmüdafiə bacarıqları, həm güc və çeviklik, həm də möhtəşəm bir kondisiya məşqi üçün ideal seçimdir. Uşaqlardan böyüklərə qədər hər yaş qrupu üçün uyğundur.',
     prices: [
       { label: 'Aylıq', amount: 'Müraciət Et' },
       { label: '3 Aylıq', amount: 'Müraciət Et' },
@@ -258,7 +258,7 @@ var campaignData = {
     icon: 'fas fa-graduation-cap',
     title: 'Tələbə Paketi',
     badge: 'Tələbə',
-    desc: 'Tələbə şəhadətnaməsi ilə xüsusi endirimli qiymətlə keyfiyyətli məşq imkanı əldə edin. Tələbə cədvəlinə uygun çevik məşq saatları ilə həm oxuyun, həm də sağlıqlı qalın.',
+    desc: 'Tələbə şəhadətnaməsi ilə xüsusi endirimli qiymətlə keyfiyyətli məşq imkanı əldə edin. Tələbə cədvəlinə uyğun çevik məşq saatları ilə həm oxuyun, həm də sağlıqlı qalın.',
     features: [
       'Tələbə şəhadətnaməsi tələb olunur',
       'Xüsusi endirimli qiymət',
@@ -274,7 +274,7 @@ var campaignData = {
     badge: 'Sərfəli',
     desc: 'Bütün il boyunca sınırsız giriş. İllik ödəniş ilə ən sərfəli seçim. Qeydiyyat haqqı pulsuz! Uzunmüddətli öhdəlik götürməklə ən yaxşı dəyəri əldə edin və sağlıqlı həyat tərzinizi davamlı edin.',
     features: [
-      '12 aylıq tam abusə',
+      '12 aylıq tam abunə',
       'Qeydiyyat haqqı pulsuz',
       'Prioritet xidmət',
       'Bütün məşq növlərə giriş',
@@ -328,7 +328,7 @@ function openTrainingPage(id) {
           '<img src="images/coach.jpg" alt="Məşqçi" class="trainer-avatar" />' +
           '<div class="trainer-info">' +
             '<h4>RM İdman Klubu Məşqçisi</h4>' +
-            '<p>Peşəkar idman məşqçisi. Media müsabiqelərinin iştirakçısı. Tələbələrini çempionluğa aparan həvəsli məşqçi.</p>' +
+            '<p>Peşəkar idman məşqçisi. Müsabiqələrin iştirakçısı. Tələbələrini çempionluğa aparan həvəsli məşqçi.</p>' +
           '</div>' +
         '</div>' +
         '<div class="detail-section-title"><i class="fas fa-list-check"></i> Nə daxildir?</div>' +
@@ -617,8 +617,60 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
-      /* Force reflow only when needed */
-      document.body.getBoundingClientRect();
+      /* Close mobile nav on resize to desktop */
+      if (window.innerWidth > 640) {
+        closeMobileNav();
+      }
     }, 150);
   }, { passive: true });
+})();
+
+/* =========================================
+   PERFORMANCE: PREFETCH & CACHE
+   ========================================= */
+(function() {
+  /* Prefetch images that will likely be needed */
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(function() {
+      var criticalImgs = ['images/coach.jpg'];
+      criticalImgs.forEach(function(src) {
+        var img = new Image();
+        img.src = src;
+      });
+    }, { timeout: 2000 });
+  }
+})();
+
+/* =========================================
+   PERFORMANCE: PREVENT LAYOUT THRASH
+   ========================================= */
+(function() {
+  /* Cache DOM queries for frequent elements */
+  var _header = null;
+  function getHeader() {
+    if (!_header) _header = document.getElementById('main-header');
+    return _header;
+  }
+
+  /* Use rAF for DOM reads/writes to avoid forced reflow */
+  var _rafScheduled = false;
+  function scheduleRaf(fn) {
+    if (!_rafScheduled) {
+      _rafScheduled = true;
+      requestAnimationFrame(function() {
+        fn();
+        _rafScheduled = false;
+      });
+    }
+  }
+})();
+
+/* =========================================
+   PERFORMANCE: FAST CLICK ON MOBILE
+   ========================================= */
+(function() {
+  /* Eliminate 300ms tap delay on older mobile browsers */
+  if ('ontouchstart' in window) {
+    document.documentElement.style.touchAction = 'manipulation';
+  }
 })();
