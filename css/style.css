@@ -21,9 +21,18 @@
   --white: #FFFFFF;
   --whatsapp: #25D366;
   --instagram: #E1306C;
+  /* Azərbaycan bayrağı rəngləri */
+  --az-blue: #0092BC;
+  --az-red: #E30A17;
+  --az-green: #509E2F;
+  /* Nanə yaşılı */
+  --mint: #3EB489;
+  --mint-light: #5ECBA1;
+  --mint-dark: #2A8F6F;
   --transition: 0.25s ease;
   --shadow: 0 8px 32px rgba(0,0,0,0.4);
   --shadow-gold: 0 4px 24px rgba(212,175,55,0.25);
+  --shadow-mint: 0 4px 24px rgba(62,180,137,0.25);
   --radius: 16px;
   --radius-sm: 8px;
   --navbar-h: 70px;
@@ -31,6 +40,7 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -104,6 +114,13 @@ button {
   margin-bottom: 12px;
 }
 
+/* Mint tag */
+.mint-tag {
+  background: rgba(62,180,137,0.15);
+  color: var(--mint);
+  border-color: rgba(62,180,137,0.35);
+}
+
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
@@ -116,12 +133,20 @@ button {
   color: var(--gold);
 }
 
+.mint-text {
+  color: var(--mint) !important;
+}
+
 .title-line {
   width: 60px;
   height: 4px;
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
   border-radius: 2px;
   margin: 16px auto 0;
+}
+
+.mint-line {
+  background: linear-gradient(90deg, var(--mint), var(--mint-light));
 }
 
 /* =========================================
@@ -163,6 +188,29 @@ button {
   background: var(--gold);
   color: var(--black);
   transform: translateY(-2px);
+}
+
+.btn-mint {
+  background: linear-gradient(135deg, var(--mint), var(--mint-light));
+  color: var(--white);
+  box-shadow: var(--shadow-mint);
+}
+
+.btn-mint:hover {
+  background: linear-gradient(135deg, var(--mint-light), var(--mint));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(62,180,137,0.45);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366, #20ba5a);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
 }
 
 .btn-sm {
@@ -235,16 +283,16 @@ button {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   list-style: none;
 }
 
 .nav-link {
   display: block;
-  padding: 8px 14px;
+  padding: 8px 12px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gray-light);
   border-radius: 8px;
   transition: all var(--transition);
@@ -297,12 +345,51 @@ button {
 
 .page.active {
   display: block;
-  animation: fadeIn 0.28s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   HERO ANIMATIONS
+   ========================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpDelay {
+  0% { opacity: 0; transform: translateY(30px); }
+  30% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpDelay2 {
+  0% { opacity: 0; transform: translateY(30px); }
+  50% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.animate-fade-up-delay {
+  opacity: 0;
+  animation: fadeUpDelay 1s ease forwards;
+}
+
+.animate-fade-up-delay2 {
+  opacity: 0;
+  animation: fadeUpDelay2 1.2s ease forwards;
 }
 
 /* =========================================
@@ -325,8 +412,10 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 30% 40%, rgba(212,175,55,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 70% 60%, rgba(212,175,55,0.05) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 60% at 30% 40%, rgba(0,146,188,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 70% 60%, rgba(227,10,23,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 80%, rgba(80,158,47,0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .hero-overlay {
@@ -342,43 +431,58 @@ button {
   padding: 16px 20px 32px;
 }
 
-/* Hero logo - dairəvi, sabit (animasiyasız) */
+/* Hero logo */
 .hero-logo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 0 auto 14px;
+  margin: 0 auto 18px;
   border: 3px solid rgba(212,175,55,0.5);
-  box-shadow: 0 0 24px rgba(212,175,55,0.3);
+  box-shadow: 0 0 32px rgba(212,175,55,0.3);
   display: block;
+  animation: subtleFloat 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 .hero-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  font-size: clamp(2.4rem, 7vw, 5rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.1;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
-.hero-title span {
-  color: var(--gold);
+/* Azərbaycan bayrağı rəngləri: RM=mavi, İdman=qırmızı, Klubu=yaşıl */
+.hero-rm {
+  color: var(--az-blue);
+  display: inline;
+  margin-right: 12px;
+}
+
+.hero-idman {
+  color: var(--az-red);
+  display: inline;
+  margin-right: 12px;
+}
+
+.hero-klubu {
+  color: var(--az-green);
   display: block;
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--gray-light);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   letter-spacing: 1px;
 }
 
 .hero-btns {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -413,6 +517,10 @@ button {
   padding-top: 0 !important;
   margin-top: 0;
   background: var(--dark2);
+}
+
+.fitness-hero {
+  background: linear-gradient(135deg, var(--dark2), rgba(62,180,137,0.08));
 }
 
 .page-hero-overlay {
@@ -456,6 +564,17 @@ button {
   align-items: center;
 }
 
+/* Haqqında bölməsi üçün ciddi serif şrift */
+.about-serif-text {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  color: var(--gray-light);
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
 .about-text p {
   color: var(--gray-light);
   margin-bottom: 16px;
@@ -479,7 +598,7 @@ button {
 }
 
 .about-features li i {
-  color: var(--gold);
+  color: var(--mint);
   font-size: 1rem;
 }
 
@@ -520,7 +639,110 @@ button {
 }
 
 /* =========================================
-   HOURS SECTION — kiçildilmiş
+   HOME TRAINING SECTION (2 bölmə)
+   ========================================= */
+.home-training-section {
+  background: var(--dark2);
+}
+
+.home-training-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.home-training-card {
+  background: var(--dark3);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: var(--radius);
+  padding: 36px 28px 28px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.home-training-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-gold);
+  border-color: var(--gold);
+}
+
+.martial-card:hover {
+  border-color: var(--az-red);
+  box-shadow: 0 8px 32px rgba(227,10,23,0.2);
+}
+
+.fitness-card:hover {
+  border-color: var(--mint);
+  box-shadow: var(--shadow-mint);
+}
+
+.home-training-card-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(212,175,55,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin: 0 auto;
+  transition: all var(--transition);
+}
+
+.mint-icon {
+  background: rgba(62,180,137,0.12);
+  color: var(--mint);
+}
+
+.home-training-card:hover .home-training-card-icon {
+  transform: scale(1.1);
+}
+
+.home-training-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
+.home-training-card p {
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.home-training-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.home-training-features span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-light);
+  font-size: 0.85rem;
+}
+
+.home-training-features span i {
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+
+.fitness-card .home-training-features span i {
+  color: var(--mint);
+}
+
+/* =========================================
+   HOURS SECTION
    ========================================= */
 .hours-section {
   background: var(--dark2);
@@ -594,9 +816,9 @@ button {
 }
 
 .hours-badge.open {
-  background: rgba(37,211,102,0.15);
-  color: #25D366;
-  border: 1px solid rgba(37,211,102,0.3);
+  background: rgba(62,180,137,0.15);
+  color: var(--mint);
+  border: 1px solid rgba(62,180,137,0.3);
 }
 
 /* =========================================
@@ -676,13 +898,13 @@ button {
 }
 
 .map-icon {
-  background: rgba(212,175,55,0.15);
-  color: var(--gold);
+  background: rgba(62,180,137,0.15);
+  color: var(--mint);
 }
 
 .contact-card:hover .map-icon {
-  background: var(--gold);
-  color: var(--black);
+  background: var(--mint);
+  color: var(--white);
 }
 
 .contact-info {
@@ -765,12 +987,24 @@ button {
   background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 70%);
 }
 
+.mint-card-img {
+  background: linear-gradient(135deg, var(--dark3), rgba(62,180,137,0.08));
+}
+
+.mint-card-img::before {
+  background: radial-gradient(circle at center, rgba(62,180,137,0.1) 0%, transparent 70%);
+}
+
 .training-icon {
   font-size: 2.8rem;
   color: var(--gold);
   position: relative;
   z-index: 1;
   transition: transform var(--transition);
+}
+
+.mint-training-icon {
+  color: var(--mint);
 }
 
 .training-card:hover .training-icon {
@@ -796,6 +1030,11 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   width: fit-content;
+}
+
+.mint-training-tag {
+  background: rgba(62,180,137,0.1);
+  color: var(--mint);
 }
 
 .training-card-body h3 {
@@ -961,7 +1200,7 @@ button {
 
 .highlight-content i {
   font-size: 2rem;
-  color: var(--gold);
+  color: var(--mint);
   margin-bottom: 16px;
   display: block;
 }
@@ -1102,7 +1341,7 @@ button {
 }
 
 .campaign-details-preview span i {
-  color: var(--gold);
+  color: var(--mint);
   font-size: 0.78rem;
 }
 
@@ -1259,7 +1498,7 @@ button {
 }
 
 .detail-features-list li i {
-  color: var(--gold);
+  color: var(--mint);
   font-size: 0.85rem;
   width: 16px;
 }
@@ -1400,6 +1639,10 @@ button {
   .home-campaigns-grid {
     grid-template-columns: 1fr;
   }
+
+  .home-training-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================================
@@ -1468,8 +1711,8 @@ button {
   }
 
   .hero-logo {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
 
   .training-grid {
@@ -1489,6 +1732,10 @@ button {
   }
 
   .home-campaigns-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-training-grid {
     grid-template-columns: 1fr;
   }
 

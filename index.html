@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>RM İdman Klubu</title>
-  <meta name="description" content="RM İdman Klubu – Bakının ən yaxşı idman zalı. Boks, kikboksinq, taekvondo, MMA, fitnes məşqləri." />
+  <meta name="description" content="RM İdman Klubu – Bakının ən yaxşı idman zalı. Boks, kikboksinq, fitnes məşqləri." />
   <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -28,7 +28,8 @@
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#" class="nav-link active" data-page="home" onclick="showPage('home');return false;">Ana Səhifə</a></li>
-      <li><a href="#" class="nav-link" data-page="training" onclick="showPage('training');return false;">Məşqlər</a></li>
+      <li><a href="#" class="nav-link" data-page="martial-arts" onclick="showPage('martial-arts');return false;">Döyüş Sənətləri</a></li>
+      <li><a href="#" class="nav-link" data-page="fitness" onclick="showPage('fitness');return false;">Trinajor</a></li>
       <li><a href="#" class="nav-link" data-page="gallery" onclick="showPage('gallery');return false;">Qalerya</a></li>
       <li><a href="#" class="nav-link" data-page="students" onclick="showPage('students');return false;">Tələbələrimiz</a></li>
       <li><a href="#" class="nav-link" data-page="campaigns" onclick="showPage('campaigns');return false;">Kampaniyalar</a></li>
@@ -46,11 +47,16 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <img src="images/logo.png" alt="RM Logo" class="hero-logo" />
-      <h1 class="hero-title">RM <span>İdman Klubu</span></h1>
-      <p class="hero-subtitle">Güclü ol. Sağlam qal. Çempiyon ol.</p>
-      <div class="hero-btns">
-        <button class="btn btn-gold" onclick="showPage('training')">Məşqlərə Bax</button>
-        <a class="btn btn-outline" href="https://wa.me/994559406018" target="_blank" rel="noopener">Əlaqə Yarat</a>
+      <h1 class="hero-title animate-fade-up">
+        <span class="hero-rm">RM</span>
+        <span class="hero-idman">İdman</span>
+        <span class="hero-klubu">Klubu</span>
+      </h1>
+      <p class="hero-subtitle animate-fade-up-delay">Güclü ol. Sağlam qal. Çempion ol.</p>
+      <div class="hero-btns animate-fade-up-delay2">
+        <button class="btn btn-gold" onclick="showPage('martial-arts')">Döyüş Sənətləri</button>
+        <button class="btn btn-outline" onclick="showPage('fitness')">Trinajor</button>
+        <a class="btn btn-whatsapp" href="https://wa.me/994555056722" target="_blank" rel="noopener">Əlaqə Yarat</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -68,22 +74,21 @@
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <p>RM İdman Klubu, peşəkar idmançılar və həvəskarlar üçün nəzərdə tutulmuş müasir idman mərkəzidir. Biz hər kəsə – uşaqdan böyüyə qədər – keyfiyyətli məşq mühiti, peşəkar məşqçilər və əlverişli şərait təqdim edirik.</p>
-          <p>Kikboksinq, Taekvondo, MMA, Kişi/Qadın Trinajor sahələrindəki güclü komandamız sizin uğurunuz üçün var.</p>
+          <p class="about-serif-text">RM İdman Klubu, peşəkar idmançılar və həvəskarlar üçün nəzərdə tutulmuş müasir idman mərkəzidir. Biz hər kəsə – uşaqdan böyüyə qədər – keyfiyyətli məşq mühiti, peşəkar məşqçilər və əlverişli şərait təqdim edirik.</p>
+          <p class="about-serif-text">Kikboksinq, Kişi/Qadın Trinajor sahələrindəki güclü komandamız sizin uğurunuz üçün var.</p>
           <ul class="about-features">
             <li><i class="fas fa-check-circle"></i> Peşəkar məşqçilər</li>
             <li><i class="fas fa-check-circle"></i> Müasir avadanlıqlar</li>
             <li><i class="fas fa-check-circle"></i> Bütün yaş qrupları</li>
             <li><i class="fas fa-check-circle"></i> Fərdi proqramlar</li>
           </ul>
-          <button class="btn btn-gold" onclick="navigateFromHome('training')">Məşqlərimizə Bax <i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="about-image">
           <div class="about-img-wrap">
             <img src="images/coach.jpg" alt="RM İdman Klubu Məşqçi" loading="lazy" />
             <div class="about-badge">
               <i class="fas fa-trophy"></i>
-              <span>Çempiyon Yetişdiririk</span>
+              <span>Çempion Yetişdiririk</span>
             </div>
           </div>
         </div>
@@ -91,7 +96,51 @@
     </div>
   </section>
 
-  <!-- HOME CAMPAIGNS (max 3) — İş Saatlarından əvvəl -->
+  <!-- HOME TRAINING SECTIONS (2 bölmə) -->
+  <section class="section home-training-section" id="home-training">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mint-tag">Məşqlər</span>
+        <h2 class="section-title">Məşq <span>Sahələrimiz</span></h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="home-training-grid">
+
+        <!-- Döyüş Sənətləri -->
+        <div class="home-training-card martial-card" onclick="showPage('martial-arts')">
+          <div class="home-training-card-icon">
+            <i class="fas fa-fist-raised"></i>
+          </div>
+          <h3>Döyüş Sənətləri</h3>
+          <p>Kikboksinq və digər döyüş sənətlərini peşəkar məşqçilərimizlə öyrənin. Güc, sürət, texnika.</p>
+          <div class="home-training-features">
+            <span><i class="fas fa-check"></i> Kikboksinq</span>
+            <span><i class="fas fa-check"></i> Uşaq qrupları</span>
+            <span><i class="fas fa-check"></i> Müsabiqə hazırlığı</span>
+          </div>
+          <button class="btn btn-gold btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Trinajor -->
+        <div class="home-training-card fitness-card" onclick="showPage('fitness')">
+          <div class="home-training-card-icon mint-icon">
+            <i class="fas fa-dumbbell"></i>
+          </div>
+          <h3>Trinajor</h3>
+          <p>Kişi və qadınlar üçün xüsusi fitnes proqramları. Formada qal, sağlıqlı yaşa.</p>
+          <div class="home-training-features">
+            <span><i class="fas fa-check"></i> Kişi bölməsi</span>
+            <span><i class="fas fa-check"></i> Qadın bölməsi</span>
+            <span><i class="fas fa-check"></i> Fərdi proqram</span>
+          </div>
+          <button class="btn btn-mint btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME CAMPAIGNS (max 3) -->
   <section class="section home-campaigns-section" id="home-campaigns">
     <div class="container">
       <div class="section-header">
@@ -189,13 +238,13 @@
         <div class="title-line"></div>
       </div>
       <div class="contact-grid">
-        <a class="contact-card" href="https://wa.me/994559406018" target="_blank" rel="noopener" aria-label="WhatsApp ilə əlaqə">
+        <a class="contact-card" href="https://wa.me/994555056722" target="_blank" rel="noopener" aria-label="WhatsApp ilə əlaqə">
           <div class="contact-icon whatsapp-icon">
             <i class="fab fa-whatsapp"></i>
           </div>
           <div class="contact-info">
             <span class="contact-label">WhatsApp / Zəng</span>
-            <span class="contact-value">+994 55 940 60 18</span>
+            <span class="contact-value">+994 55 505 67 22</span>
           </div>
           <i class="fas fa-arrow-right contact-arrow"></i>
         </a>
@@ -209,7 +258,7 @@
           </div>
           <i class="fas fa-arrow-right contact-arrow"></i>
         </a>
-        <a class="contact-card" href="https://www.google.com/maps/place/Azerbaycan+Hal%C4%B1+M%C3%BCzesi/@40.3807867,49.811244,6544m/data=!3m1!1e3!4m6!3m5!1s0x40307c339b6e5c55:0x6e716d363b395896!8m2!3d40.3599298!4d49.8358238!16s%2Fm%2F0cz9149?entry=ttu&g_ep=EgoyMDI2MDcyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Xəritədə göstər">
+        <a class="contact-card" href="https://maps.app.goo.gl/916dTFDQKmXtCmyh6" target="_blank" rel="noopener" aria-label="Xəritədə göstər">
           <div class="contact-icon map-icon">
             <i class="fas fa-map-marker-alt"></i>
           </div>
@@ -226,52 +275,28 @@
 </main>
 
 <!-- ============================
-     PAGE: TRAINING
+     PAGE: MARTIAL ARTS (Döyüş Sənətləri)
 ============================= -->
-<main id="page-training" class="page">
+<main id="page-martial-arts" class="page">
   <section class="page-hero small-hero">
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-      <h1>Məşqlər</h1>
+      <h1>Döyüş Sənətləri</h1>
       <p>Peşəkar məşqçilərimizlə birgə zəfər qazanın</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <button class="back-btn" id="training-back-btn" onclick="goBackPage('training')">
+      <button class="back-btn" onclick="goBackPage('martial-arts')">
         <i class="fas fa-arrow-left"></i> Geri
       </button>
       <div class="section-header">
-        <span class="section-tag">Proqramlar</span>
-        <h2 class="section-title">Məşq <span>Növləri</span></h2>
+        <span class="section-tag">Döyüş Proqramları</span>
+        <h2 class="section-title">Döyüş <span>Sənətləri</span></h2>
         <div class="title-line"></div>
       </div>
-      <div class="training-grid" id="training-grid">
-
-        <div class="training-card" onclick="openTrainingPage('trinajor-kisi')">
-          <div class="training-card-img">
-            <i class="fas fa-dumbbell training-icon"></i>
-          </div>
-          <div class="training-card-body">
-            <span class="training-tag">Fitnes</span>
-            <h3>Trinajor (Kişi)</h3>
-            <p>Kişilər üçün xüsusi hazırlanmış güc məşq proqramı. Əzələ kütləsi artırmaq, güclənmək və formada qalmaq üçün ideal.</p>
-            <button class="btn btn-gold btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
-
-        <div class="training-card" onclick="openTrainingPage('trinajor-qadin')">
-          <div class="training-card-img">
-            <i class="fas fa-heart training-icon"></i>
-          </div>
-          <div class="training-card-body">
-            <span class="training-tag">Fitnes</span>
-            <h3>Trinajor (Qadın)</h3>
-            <p>Qadınlar üçün nəzərdə tutulmuş xüsusi fitnes proqramı. Arıqlamaq, elastiklik qazanmaq və sağlam qalmaq üçün uyğundur.</p>
-            <button class="btn btn-gold btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
+      <div class="training-grid">
 
         <div class="training-card" onclick="openTrainingPage('kikboksinq')">
           <div class="training-card-img">
@@ -285,27 +310,56 @@
           </div>
         </div>
 
-        <div class="training-card" onclick="openTrainingPage('taekvondo')">
-          <div class="training-card-img">
-            <i class="fas fa-shoe-prints training-icon"></i>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================
+     PAGE: FITNESS (Trinajor)
+============================= -->
+<main id="page-fitness" class="page">
+  <section class="page-hero small-hero fitness-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Trinajor</h1>
+      <p>Güclü bədən, sağlam həyat</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" onclick="goBackPage('fitness')">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div class="section-header">
+        <span class="section-tag mint-tag">Fitnes Proqramları</span>
+        <h2 class="section-title">Trinajor <span class="mint-text">Bölməsi</span></h2>
+        <div class="title-line mint-line"></div>
+      </div>
+      <div class="training-grid">
+
+        <div class="training-card" onclick="openTrainingPage('trinajor-kisi')">
+          <div class="training-card-img mint-card-img">
+            <i class="fas fa-dumbbell training-icon mint-training-icon"></i>
           </div>
           <div class="training-card-body">
-            <span class="training-tag">Döyüş sənəti</span>
-            <h3>Taekvondo</h3>
-            <p>Koreya mənşəli döyüş sənəti. Ayaq zərbələrinin ustalığı, intizam, özünəinam və olimpik idman növü kimi tanınan Taekvondo.</p>
-            <button class="btn btn-gold btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+            <span class="training-tag mint-training-tag">Fitnes</span>
+            <h3>Trinajor (Kişi)</h3>
+            <p>Kişilər üçün xüsusi hazırlanmış güc məşq proqramı. Əzələ kütləsi artırmaq, güclənmək və formada qalmaq üçün ideal.</p>
+            <button class="btn btn-mint btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
 
-        <div class="training-card" onclick="openTrainingPage('mma')">
-          <div class="training-card-img">
-            <i class="fas fa-fire training-icon"></i>
+        <div class="training-card" onclick="openTrainingPage('trinajor-qadin')">
+          <div class="training-card-img mint-card-img">
+            <i class="fas fa-heart training-icon mint-training-icon"></i>
           </div>
           <div class="training-card-body">
-            <span class="training-tag">Döyüş sənəti</span>
-            <h3>MMA</h3>
-            <p>Mixed Martial Arts – bütün döyüş sənətlərinin birləşməsi. Ən tam və hərtərəfli döyüş məşq sistemi. Güclü, sürətli, çevik.</p>
-            <button class="btn btn-gold btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
+            <span class="training-tag mint-training-tag">Fitnes</span>
+            <h3>Trinajor (Qadın)</h3>
+            <p>Qadınlar üçün nəzərdə tutulmuş xüsusi fitnes proqramı. Arıqlamaq, elastiklik qazanmaq və sağlam qalmaq üçün uyğundur.</p>
+            <button class="btn btn-mint btn-sm">Ətraflı Bax <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
 
@@ -418,7 +472,7 @@
             <img src="images/student.jpg" alt="RM İdman Klubu Tələbəsi" loading="lazy" />
           </div>
           <div class="student-info">
-            <h3>Azərbaycan Çempionu</h3>
+            <h3>Azərbaycan Çempioni</h3>
             <p>RM İdman Klubunun tələbəsi Azərbaycan Boks Çempionatında medalçı oldu. Məşqçimizin rəhbərliyi altında çox çalışaraq bu nailiyyəti qazandı.</p>
             <div class="student-badges">
               <span class="s-badge"><i class="fas fa-medal"></i> Çempion</span>
