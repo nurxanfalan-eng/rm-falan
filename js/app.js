@@ -1,23 +1,102 @@
 'use strict';
 
 /* =========================================
-   PAGE ROUTER
+   SCROLL & PAGE HISTORY
+   Her sehife ucun scroll pozisiyasini saxla
    ========================================= */
-var currentPage = 'home';
-var previousPage = 'home';
+var scrollPositions = {};
 
-function showPage(pageId) {
+// Sehife tarixcesi - geri ucun
+var pageHistory = [];
+var currentPage = 'home';
+
+/* =========================================
+   CORE PAGE ROUTER
+   ========================================= */
+function showPage(pageId, saveScroll) {
+  // Indiki sehifenin scroll pozisiyasini saxla
+  if (saveScroll !== false) {
+    scrollPositions[currentPage] = window.scrollY;
+  }
+
+  // Butun sehifeleri gizlet
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+
+  // Heden sehifeni goster
+  var target = document.getElementById('page-' + pageId);
+  if (!target) return;
+  target.classList.add('active');
+
+  // Nav linkleri yenile
+  var links = document.querySelectorAll('.nav-link');
+  for (var j = 0; j < links.length; j++) {
+    links[j].classList.remove('active');
+    if (links[j].getAttribute('data-page') === pageId) {
+      links[j].classList.add('active');
+    }
+  }
+
+  closeMobileNav();
+
+  // Scroll pozisiyasini berpa et ve ya uste qal
+  var savedScroll = scrollPositions[pageId];
+  if (typeof savedScroll === 'number') {
+    window.scrollTo(0, savedScroll);
+  } else {
+    window.scrollTo(0, 0);
+  }
+
+  currentPage = pageId;
+}
+
+/* =========================================
+   ANA SEHIFEDEN NAVIGATION (scroll pozisiyasini saxlayir)
+   ========================================= */
+function navigateFromHome(targetPage) {
+  // Indiki scroll pozisiyasini saxla
+  scrollPositions['home'] = window.scrollY;
+  // Tarixceye elave et
+  pageHistory.push({ page: 'home', scroll: window.scrollY });
+  // Heden sehifeye kec (scroll saxlama olmadan)
+  _switchPage(targetPage, 0);
+}
+
+/* =========================================
+   GERI DUYMELERI UCUN FUNKSIYA
+   Heden sehifeden onceki sehifeye qayit
+   ========================================= */
+function goBackPage(fromPage) {
+  var targetPage, targetScroll;
+
+  // Tarixcede bir onceki sehifeye bax
+  if (pageHistory.length > 0) {
+    var prev = pageHistory.pop();
+    targetPage = prev.page;
+    targetScroll = prev.scroll;
+  } else {
+    // Tarixce yoxdursa, default olaraq ana sehife
+    targetPage = 'home';
+    targetScroll = scrollPositions['home'] || 0;
+  }
+
+  _switchPage(targetPage, targetScroll);
+}
+
+/* =========================================
+   DAXILI SEHIFE KECID FUNKSIYASI
+   ========================================= */
+function _switchPage(pageId, scrollY) {
   var pages = document.querySelectorAll('.page');
   for (var i = 0; i < pages.length; i++) {
     pages[i].classList.remove('active');
   }
 
   var target = document.getElementById('page-' + pageId);
-  if (target) {
-    target.classList.add('active');
-    previousPage = currentPage;
-    currentPage = pageId;
-  }
+  if (!target) return;
+  target.classList.add('active');
 
   var links = document.querySelectorAll('.nav-link');
   for (var j = 0; j < links.length; j++) {
@@ -28,16 +107,14 @@ function showPage(pageId) {
   }
 
   closeMobileNav();
-  window.scrollTo(0, 0);
-}
+  currentPage = pageId;
 
-function goBack(fallback) {
-  showPage(previousPage !== currentPage ? previousPage : (fallback || 'home'));
-}
-
-function goBackCampaign() {
-  var from = document.getElementById('campaign-back-btn').getAttribute('data-from') || 'campaigns';
-  showPage(from);
+  // Scroll pozisiyasini berpa et
+  if (typeof scrollY === 'number') {
+    window.scrollTo(0, scrollY);
+  } else {
+    window.scrollTo(0, 0);
+  }
 }
 
 /* =========================================
@@ -77,6 +154,30 @@ document.addEventListener('DOMContentLoaded', function() {
       header.classList.toggle('scrolled', window.scrollY > 10);
     }
   }, { passive: true });
+});
+
+/* =========================================
+   NAV LINKLERINDEN KECID (tarixce ile)
+   ========================================= */
+// Nav linklerini tutub tarixcede saxla
+document.addEventListener('DOMContentLoaded', function() {
+  var navLinkEls = document.querySelectorAll('.nav-link');
+  for (var i = 0; i < navLinkEls.length; i++) {
+    (function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var targetPage = link.getAttribute('data-page');
+        if (targetPage && targetPage !== currentPage) {
+          // Indiki scroll pozisiyasini saxla
+          scrollPositions[currentPage] = window.scrollY;
+          // Tarixceye elave et
+          pageHistory.push({ page: currentPage, scroll: window.scrollY });
+          // Sehifeye kec (scroll 0-dan basla)
+          _switchPage(targetPage, 0);
+        }
+      });
+    })(navLinkEls[i]);
+  }
 });
 
 /* =========================================
@@ -248,11 +349,16 @@ var campaignData = {
 };
 
 /* =========================================
-   OPEN TRAINING PAGE (not modal)
+   OPEN TRAINING PAGE
    ========================================= */
 function openTrainingPage(id) {
   var data = trainingData[id];
   if (!data) return;
+
+  // Indiki scroll pozisiyasini saxla
+  scrollPositions[currentPage] = window.scrollY;
+  // Tarixceye elave et
+  pageHistory.push({ page: currentPage, scroll: window.scrollY });
 
   var selectedPlan = 'Aylıq';
 
@@ -306,15 +412,7 @@ function openTrainingPage(id) {
   document.getElementById('training-detail-hero-title').textContent = data.title;
   document.getElementById('training-detail-content').innerHTML = html;
 
-  previousPage = currentPage;
-  currentPage = 'training-detail';
-
-  var pages = document.querySelectorAll('.page');
-  for (var i = 0; i < pages.length; i++) {
-    pages[i].classList.remove('active');
-  }
-  document.getElementById('page-training-detail').classList.add('active');
-  window.scrollTo(0, 0);
+  _switchPage('training-detail', 0);
 }
 
 function selectPriceTab(btn, trainingId) {
@@ -343,15 +441,16 @@ function selectPriceTab(btn, trainingId) {
 }
 
 /* =========================================
-   OPEN CAMPAIGN PAGE (not modal)
+   OPEN CAMPAIGN PAGE
    ========================================= */
-var campaignFromPage = 'campaigns';
-
-function openCampaignPage(id, fromPage) {
+function openCampaignPage(id) {
   var data = campaignData[id];
   if (!data) return;
 
-  campaignFromPage = fromPage || (currentPage === 'home' ? 'home' : 'campaigns');
+  // Indiki scroll pozisiyasini saxla
+  scrollPositions[currentPage] = window.scrollY;
+  // Tarixceye elave et
+  pageHistory.push({ page: currentPage, scroll: window.scrollY });
 
   var featuresHTML = data.features.map(function(f) {
     return '<li><i class="fas fa-check-circle"></i> ' + f + '</li>';
@@ -388,20 +487,7 @@ function openCampaignPage(id, fromPage) {
   document.getElementById('campaign-detail-hero-title').textContent = data.title;
   document.getElementById('campaign-detail-content').innerHTML = html;
 
-  var backBtn = document.getElementById('campaign-back-btn');
-  if (backBtn) {
-    backBtn.setAttribute('data-from', campaignFromPage);
-  }
-
-  previousPage = currentPage;
-  currentPage = 'campaign-detail';
-
-  var pages = document.querySelectorAll('.page');
-  for (var i = 0; i < pages.length; i++) {
-    pages[i].classList.remove('active');
-  }
-  document.getElementById('page-campaign-detail').classList.add('active');
-  window.scrollTo(0, 0);
+  _switchPage('campaign-detail', 0);
 }
 
 /* =========================================
@@ -433,7 +519,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 /* =========================================
-   PREVENT URL CHANGES
+   PREVENT URL CHANGES / POPSTATE
    ========================================= */
 window.addEventListener('popstate', function(e) {
   e.preventDefault();

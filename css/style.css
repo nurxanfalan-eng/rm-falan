@@ -339,16 +339,16 @@ button {
   position: relative;
   z-index: 1;
   max-width: 700px;
-  padding: 40px 20px;
+  padding: 16px 20px 32px;
 }
 
 /* Hero logo - dairəvi, sabit (animasiyasız) */
 .hero-logo {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 0 auto 24px;
+  margin: 0 auto 14px;
   border: 3px solid rgba(212,175,55,0.5);
   box-shadow: 0 0 24px rgba(212,175,55,0.3);
   display: block;
@@ -360,7 +360,7 @@ button {
   font-weight: 900;
   color: var(--white);
   line-height: 1.1;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
@@ -372,7 +372,7 @@ button {
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--gray-light);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   letter-spacing: 1px;
 }
 
@@ -1468,8 +1468,8 @@ button {
   }
 
   .hero-logo {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
   }
 
   .training-grid {
