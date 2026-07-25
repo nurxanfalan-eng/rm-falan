@@ -333,7 +333,7 @@ function openTrainingPage(id) {
         '</div>' +
         '<div class="detail-section-title"><i class="fas fa-list-check"></i> Nə daxildir?</div>' +
         '<ul class="detail-features-list">' + featuresHTML + '</ul>' +
-        '<div class="detail-section-title"><i class="fas fa-tag"></i> Abusəlik Növü Seçin</div>' +
+        '<div class="detail-section-title"><i class="fas fa-tag"></i> Abunəlik Növü Seçin</div>' +
         '<div class="price-tabs" id="price-tabs-' + id + '">' + priceTabsHTML + '</div>' +
         '<div class="detail-section-title" style="margin-top:18px"><i class="fas fa-info-circle"></i> Qiymət Məlumatı</div>' +
         '<div class="detail-price-info">Dəqiq qiymət məlumatı üçün WhatsApp üzərindən əlaqə saxlayın.</div>' +
