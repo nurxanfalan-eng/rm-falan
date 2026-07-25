@@ -153,11 +153,11 @@ document.addEventListener('DOMContentLoaded', function() {
    TRAINING DATA
    ========================================= */
 var trainingData = {
-  'trinajor-kisi': {
+  'trenajor-kisi': {
     icon: 'fas fa-dumbbell',
     tag: 'Fitnes',
-    title: 'Trinajor (Kişi)',
-    desc: 'Kişilər üçün xüsusi hazırlanmış güc məşq proqramı. Peşəkar məşqçilərimizin rəhbərliyi altında əzələ kütləsi artırmaq, güclənmək, formada qalmaq və sağlıqlı həyat sürməyə başlamaq üçün ideal imkan. Müasir avadanlıqlarımız və fərdi yanaşmamızla hədəflərinizə çatacaqsınız.',
+    title: 'Trenajor (Kişi)',
+    desc: 'Kişilər üçün xüsusi hazırlanmış güc məşq proqramı. Peşəkar məşqçilərimizin rəhbərliyi altında əzələ kütləsi artırmaq, güclənmək, formada qalmaq və sağlıqlı həyat sürməyə başlamaq üçün ideal imkan. Müasir trenajorlarımız və fərdi yanaşmamızla hədəflərinizə çatacaqsınız.',
     prices: [
       { label: 'Aylıq', amount: 'Müraciət Et' },
       { label: '3 Aylıq', amount: 'Müraciət Et' },
@@ -167,16 +167,16 @@ var trainingData = {
     features: [
       'Fərdi məşq planı',
       'Peşəkar məşqçi dəstəyi',
-      'Müasir trinajorlar',
+      'Müasir trenajorlar',
       'Pulsuz ilkin qiymətləndirmə',
       'Qidalanma məsləhəti',
       'İstənilən vaxt məşq'
     ]
   },
-  'trinajor-qadin': {
+  'trenajor-qadin': {
     icon: 'fas fa-heart',
     tag: 'Fitnes',
-    title: 'Trinajor (Qadın)',
+    title: 'Trenajor (Qadın)',
     desc: 'Qadınlar üçün nəzərdə tutulmuş xüsusi fitnes proqramı. Arıqlamaq, elastiklik qazanmaq, sağlam qalmaq və özünüzə olan inamı artırmaq üçün uyğun bir mühit. Rahat, təhlükəsiz və motivasiyalı məşq mühiti ilə hədəflərinizə çatın.',
     prices: [
       { label: 'Aylıq', amount: 'Müraciət Et' },
