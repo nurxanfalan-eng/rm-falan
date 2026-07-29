@@ -1681,6 +1681,44 @@ button {
   .students-gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .athlete-featured-card {
+    grid-template-columns: 1fr;
+  }
+
+  .athlete-img-wrap img {
+    min-height: 260px;
+    height: 260px;
+  }
+
+  .champion-main-card {
+    grid-template-columns: 1fr;
+  }
+
+  .champion-photo-wrap img {
+    min-height: 260px;
+    height: 260px;
+  }
+
+  .champion-card-info {
+    padding: 24px 20px;
+  }
+
+  .athlete-featured-info {
+    padding: 24px 20px;
+  }
+
+  .champions-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .athletes-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .champions-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* =========================================
@@ -1789,6 +1827,38 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .athlete-featured-card {
+    grid-template-columns: 1fr;
+  }
+
+  .champion-main-card {
+    grid-template-columns: 1fr;
+  }
+
+  .champion-card-info {
+    padding: 18px 16px;
+  }
+
+  .athlete-featured-info {
+    padding: 18px 16px;
+  }
+
+  .champions-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .athletes-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .champions-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .champion-stat-num {
+    font-size: 1.6rem;
+  }
+
   .detail-header {
     padding: 20px 16px 0;
   }
@@ -1858,6 +1928,439 @@ button {
   .hours-grid {
     max-width: 100%;
   }
+}
+
+/* =========================================
+   ATHLETES PAGE (İdmançılar)
+   ========================================= */
+.athletes-hero {
+  background: linear-gradient(135deg, var(--dark2), rgba(0,146,188,0.08));
+}
+
+.athletes-featured {
+  margin-bottom: 20px;
+}
+
+.athlete-featured-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background: var(--dark2);
+  border: 1px solid rgba(150,200,10,0.2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.athlete-featured-card:hover {
+  border-color: var(--lime);
+  box-shadow: var(--shadow-lime);
+}
+
+.athlete-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.athlete-img-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.athlete-featured-card:hover .athlete-img-wrap img {
+  transform: scale(1.04);
+}
+
+.athlete-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: var(--lime);
+  font-size: 2rem;
+}
+
+.athlete-featured-card:hover .athlete-img-overlay {
+  opacity: 1;
+}
+
+.athlete-featured-info {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.athlete-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--lime), var(--lime-light));
+  color: var(--black);
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  width: fit-content;
+}
+
+.athlete-featured-info h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.athlete-featured-info p {
+  color: var(--gray-light);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.athlete-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.athlete-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gray-light);
+  font-size: 0.9rem;
+}
+
+.athlete-stat i {
+  color: var(--lime);
+  width: 18px;
+  text-align: center;
+}
+
+/* Athletes gallery grid */
+.athletes-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.athletes-gallery-item {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--dark3);
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+.athletes-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.35s ease;
+}
+
+.athletes-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.athletes-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: var(--white);
+}
+
+.athletes-gallery-item:hover .athletes-gallery-overlay {
+  opacity: 1;
+}
+
+.athletes-gallery-overlay i {
+  font-size: 1.7rem;
+  color: var(--lime);
+}
+
+.athletes-gallery-overlay span {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* =========================================
+   CHAMPIONS PAGE (Çempionlar)
+   ========================================= */
+.champions-hero {
+  background: linear-gradient(135deg, var(--dark2), rgba(212,175,55,0.08));
+}
+
+.champion-showcase {
+  margin-bottom: 20px;
+}
+
+.champion-main-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  background: linear-gradient(135deg, var(--dark2), rgba(150,200,10,0.04));
+  border: 1px solid rgba(150,200,10,0.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.champion-main-card:hover {
+  border-color: var(--lime);
+  box-shadow: 0 12px 48px rgba(150,200,10,0.2);
+  transform: translateY(-3px);
+}
+
+.champion-photo-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.champion-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.45s ease;
+  display: block;
+}
+
+.champion-main-card:hover .champion-photo-wrap img {
+  transform: scale(1.04);
+}
+
+.champion-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: var(--white);
+}
+
+.champion-main-card:hover .champion-photo-overlay {
+  opacity: 1;
+}
+
+.champion-photo-overlay i {
+  font-size: 2.2rem;
+  color: var(--lime);
+}
+
+.champion-photo-overlay span {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.champion-trophy-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: linear-gradient(135deg, #D4AF37, #F0D060);
+  color: var(--black);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 4px 16px rgba(212,175,55,0.5);
+  z-index: 2;
+}
+
+.champion-card-info {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.champion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.champion-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(150,200,10,0.12);
+  color: var(--lime);
+  border: 1px solid rgba(150,200,10,0.3);
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.champion-card-info h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.champion-card-info p {
+  color: var(--gray-light);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Champions gallery grid */
+.champions-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 50px;
+}
+
+.champions-gallery-item {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--dark3);
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+.champions-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.35s ease;
+}
+
+.champions-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.champions-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: var(--white);
+}
+
+.champions-gallery-item:hover .champions-gallery-overlay {
+  opacity: 1;
+}
+
+.champions-gallery-overlay i {
+  font-size: 1.7rem;
+  color: #D4AF37;
+}
+
+.champions-gallery-overlay span {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Champions stats */
+.champions-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.champion-stat-card {
+  background: var(--dark2);
+  border: 1px solid rgba(150,200,10,0.18);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.champion-stat-card:hover {
+  border-color: var(--lime);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lime);
+}
+
+.champion-stat-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(150,200,10,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--lime);
+  transition: all var(--transition);
+}
+
+.champion-stat-card:hover .champion-stat-icon {
+  background: var(--lime);
+  color: var(--black);
+}
+
+.champion-stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--lime);
+  line-height: 1;
+}
+
+.champion-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--gray-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* =========================================

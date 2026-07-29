@@ -495,7 +495,16 @@ var lightboxSource = 'gallery';
 
 function buildLightboxImages(source) {
   lightboxImages = [];
-  var gridId = (source === 'students') ? 'students-gallery-grid' : 'gallery-grid';
+  var gridId;
+  if (source === 'students') {
+    gridId = 'students-gallery-grid';
+  } else if (source === 'athletes') {
+    gridId = 'athletes-gallery-grid';
+  } else if (source === 'champions') {
+    gridId = 'champions-gallery-grid';
+  } else {
+    gridId = 'gallery-grid';
+  }
   var items = document.querySelectorAll('#' + gridId + ' img');
   for (var i = 0; i < items.length; i++) {
     lightboxImages.push({ src: items[i].src, alt: items[i].alt });

@@ -40,6 +40,8 @@
       <li><a href="#" class="nav-link" data-page="martial-arts" onclick="showPage('martial-arts');return false;">Döyüş Sənətləri</a></li>
       <li><a href="#" class="nav-link" data-page="fitness" onclick="showPage('fitness');return false;">Trinajor</a></li>
       <li><a href="#" class="nav-link" data-page="gallery" onclick="showPage('gallery');return false;">Qalerya</a></li>
+      <li><a href="#" class="nav-link" data-page="athletes" onclick="showPage('athletes');return false;">İdmançılar</a></li>
+      <li><a href="#" class="nav-link" data-page="champions" onclick="showPage('champions');return false;">Çempionlar</a></li>
       <li><a href="#" class="nav-link" data-page="students" onclick="showPage('students');return false;">Tələbələrimiz</a></li>
       <li><a href="#" class="nav-link" data-page="campaigns" onclick="showPage('campaigns');return false;">Kampaniyalar</a></li>
     </ul>
@@ -175,7 +177,7 @@
         <div class="hours-card">
           <div class="hours-icon"><i class="fas fa-calendar-week"></i></div>
           <h3>B.ertəsi – Cümə</h3>
-          <p class="hours-time">08:00 – 22:00</p>
+          <p class="hours-time">09:00 – 23:00</p>
           <span class="hours-badge open">Açıqdır</span>
         </div>
         <div class="hours-card">
@@ -419,6 +421,203 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================
+     PAGE: ATHLETES (İdmançılar)
+============================= -->
+<main id="page-athletes" class="page">
+  <section class="page-hero small-hero athletes-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>İdmançılar</h1>
+      <p>RM İdman Klubunun iftixarı olan idmançılarımız</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" onclick="goBackPage('athletes')">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div class="section-header">
+        <span class="section-tag">İdmançılarımız</span>
+        <h2 class="section-title">Bizim <span>İdmançılar</span></h2>
+        <div class="title-line"></div>
+      </div>
+
+      <!-- Featured Athlete Card -->
+      <div class="athletes-featured">
+        <div class="athlete-featured-card" onclick="openLightbox(0,'athletes')">
+          <div class="athlete-img-wrap">
+            <img src="images/champion.jpg" alt="RM İdman Klubu İdmançısı – Boks Yarışması" loading="lazy" />
+            <div class="athlete-img-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="athlete-featured-info">
+            <div class="athlete-badge">
+              <i class="fas fa-medal"></i>
+              <span>Yarışma Uğuru</span>
+            </div>
+            <h3>RM İdmançılarımız</h3>
+            <p>RM İdman Klubunun cəsur idmançıları peşəkar yarışmalarda klubumuzu ləyaqətlə təmsil edirlər. Hər yarışmada göstərdikləri mərdlik və çalışqanlıq ilə bizə qürur hissi yaşadırlar.</p>
+            <div class="athlete-stats">
+              <div class="athlete-stat">
+                <i class="fas fa-trophy"></i>
+                <span>Çoxsaylı Uğurlar</span>
+              </div>
+              <div class="athlete-stat">
+                <i class="fas fa-flag"></i>
+                <span>Azərbaycan Təmsilçisi</span>
+              </div>
+              <div class="athlete-stat">
+                <i class="fas fa-fist-raised"></i>
+                <span>Boks & Kikboks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Athletes Gallery Grid -->
+      <div class="section-header" style="margin-top:50px">
+        <span class="section-tag">Foto Qalerya</span>
+        <h2 class="section-title">İdmançı <span>Fotoları</span></h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="athletes-gallery-grid" id="athletes-gallery-grid">
+        <div class="athletes-gallery-item" onclick="openLightbox(0,'athletes')">
+          <img src="images/champion.jpg" alt="RM İdman Klubu – Boks Yarışması" loading="lazy" />
+          <div class="athletes-gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Yarışma</span>
+          </div>
+        </div>
+        <div class="athletes-gallery-item" onclick="openLightbox(1,'athletes')">
+          <img src="images/student.jpg" alt="RM İdman Klubu – İdmançı" loading="lazy" />
+          <div class="athletes-gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>İdmançı</span>
+          </div>
+        </div>
+        <div class="athletes-gallery-item" onclick="openLightbox(2,'athletes')">
+          <img src="images/students1.jpg" alt="RM İdman Klubu – Tələbələr" loading="lazy" />
+          <div class="athletes-gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Tələbələr</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============================
+     PAGE: CHAMPIONS (Çempionlar)
+============================= -->
+<main id="page-champions" class="page">
+  <section class="page-hero small-hero champions-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Çempionlar</h1>
+      <p>Uğurlarımız, qurur mənbəyimiz</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" onclick="goBackPage('champions')">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div class="section-header">
+        <span class="section-tag">Qürur Anları</span>
+        <h2 class="section-title">Bizim <span>Çempionlar</span></h2>
+        <div class="title-line"></div>
+      </div>
+
+      <!-- Champion Featured Photo -->
+      <div class="champion-showcase">
+        <div class="champion-main-card" onclick="openLightbox(0,'champions')">
+          <div class="champion-photo-wrap">
+            <img src="images/champion.jpg" alt="RM İdman Klubu Çempionu – Boks Yarışması" loading="lazy" />
+            <div class="champion-photo-overlay">
+              <i class="fas fa-expand"></i>
+              <span>Böyüt</span>
+            </div>
+            <div class="champion-trophy-badge">
+              <i class="fas fa-trophy"></i>
+              <span>Çempion</span>
+            </div>
+          </div>
+          <div class="champion-card-info">
+            <div class="champion-tags">
+              <span class="champion-tag"><i class="fas fa-medal"></i> Yarışma Uğuru</span>
+              <span class="champion-tag"><i class="fas fa-flag"></i> Azərbaycan</span>
+            </div>
+            <h3>RM İdman Klubu Çempionu</h3>
+            <p>RM İdman Klubunun şanlı çempionu — boks yarışmasında möhtəşəm bir nümayiş göstərdi. Klubumuzun peşəkar məşqçi heyəti ilə birlikdə çətin məşq prosesindən keçərək bu nailiyyəti əldə etdi. Bu uğur bütün klub üzvlərinin əzmkarlığının nəticəsidir.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Champions Gallery -->
+      <div class="section-header" style="margin-top:55px">
+        <span class="section-tag">Çempion Anları</span>
+        <h2 class="section-title">Uğur <span>Qalerya</span></h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="champions-gallery-grid" id="champions-gallery-grid">
+        <div class="champions-gallery-item" onclick="openLightbox(0,'champions')">
+          <img src="images/champion.jpg" alt="RM İdman Klubu Çempionu" loading="lazy" />
+          <div class="champions-gallery-overlay">
+            <i class="fas fa-trophy"></i>
+            <span>Çempion</span>
+          </div>
+        </div>
+        <div class="champions-gallery-item" onclick="openLightbox(1,'champions')">
+          <img src="images/student.jpg" alt="RM İdman Klubu – Boks" loading="lazy" />
+          <div class="champions-gallery-overlay">
+            <i class="fas fa-fist-raised"></i>
+            <span>Boks</span>
+          </div>
+        </div>
+        <div class="champions-gallery-item" onclick="openLightbox(2,'champions')">
+          <img src="images/students5.jpg" alt="RM İdman Klubu – Komanda" loading="lazy" />
+          <div class="champions-gallery-overlay">
+            <i class="fas fa-users"></i>
+            <span>Komanda</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Stats -->
+      <div class="champions-stats">
+        <div class="champion-stat-card">
+          <div class="champion-stat-icon"><i class="fas fa-trophy"></i></div>
+          <div class="champion-stat-num">50+</div>
+          <div class="champion-stat-label">Medallar</div>
+        </div>
+        <div class="champion-stat-card">
+          <div class="champion-stat-icon"><i class="fas fa-users"></i></div>
+          <div class="champion-stat-num">100+</div>
+          <div class="champion-stat-label">İdmançılar</div>
+        </div>
+        <div class="champion-stat-card">
+          <div class="champion-stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="champion-stat-num">20+</div>
+          <div class="champion-stat-label">Yarışmalar</div>
+        </div>
+        <div class="champion-stat-card">
+          <div class="champion-stat-icon"><i class="fas fa-star"></i></div>
+          <div class="champion-stat-num">5+</div>
+          <div class="champion-stat-label">İllər</div>
+        </div>
+      </div>
+
     </div>
   </section>
 </main>
