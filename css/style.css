@@ -2474,3 +2474,115 @@ button {
 .container {
   transform: translateZ(0);
 }
+
+/* =========================================
+   MEMBER CARDS (Champions & Athletes)
+   ========================================= */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.member-card {
+  background: var(--dark2);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(212,175,55,0.18);
+}
+
+.member-img-wrap {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--dark3);
+}
+
+.member-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.member-card:hover .member-img-wrap img {
+  transform: scale(1.04);
+}
+
+.member-info {
+  padding: 20px 22px 24px;
+  flex: 1;
+}
+
+.member-info h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.member-year {
+  font-size: 0.82rem;
+  color: var(--gray);
+  margin-bottom: 14px;
+}
+
+.member-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.member-achievements li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--gray-light);
+  line-height: 1.4;
+}
+
+.member-achievements li i.fa-crown {
+  color: var(--gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.member-achievements li i.fa-trophy {
+  color: #c0a050;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.member-achievements li i.fa-medal {
+  color: #aaa;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Responsive: single column on small screens */
+@media (max-width: 480px) {
+  .members-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .member-img-wrap {
+    aspect-ratio: 4/5;
+  }
+}
