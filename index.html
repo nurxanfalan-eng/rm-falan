@@ -42,6 +42,7 @@
       <li><a href="#" class="nav-link" data-page="gallery" onclick="showPage('gallery');return false;">Qalerya</a></li>
       <li><a href="#" class="nav-link" data-page="champions" onclick="showPage('champions');return false;">Çempionlar</a></li>
       <li><a href="#" class="nav-link" data-page="athletes" onclick="showPage('athletes');return false;">İdmançılar</a></li>
+
       <li><a href="#" class="nav-link" data-page="campaigns" onclick="showPage('campaigns');return false;">Kampaniyalar</a></li>
     </ul>
   </nav>
@@ -169,7 +170,8 @@
     <div class="container">
       <div class="section-header" style="margin-bottom:20px">
         <span class="section-tag">Cədvəl</span>
-        <h2 class="section-title" style="text-transform:none;">trenajor</h2>
+        <h2 class="section-title">Trenajor</h2>
+        <p style="color:var(--gray);font-size:0.85rem;margin-top:4px;letter-spacing:0.5px;">iş saatları</p>
         <div class="title-line"></div>
       </div>
       <div class="hours-grid">
@@ -425,65 +427,6 @@
 </main>
 
 <!-- ============================
-     PAGE: ATHLETES (İdmançılar)
-============================= -->
-<main id="page-athletes" class="page">
-  <section class="page-hero small-hero athletes-hero">
-    <div class="page-hero-overlay"></div>
-    <div class="page-hero-content">
-      <h1>İdmançılar</h1>
-      <p>RM İdman Klubunun iftixarı olan idmançılarımız</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <button class="back-btn" onclick="goBackPage('athletes')">
-        <i class="fas fa-arrow-left"></i> Geri
-      </button>
-      <div class="section-header">
-        <span class="section-tag">İdmançılarımız</span>
-        <h2 class="section-title">Bizim <span>İdmançılar</span></h2>
-        <div class="title-line"></div>
-      </div>
-
-      <div class="members-grid">
-        <div class="member-card">
-          <div class="member-img-wrap">
-            <img src="images/yusif.jpg" alt="Şükürlü Yusif" loading="lazy" />
-          </div>
-          <div class="member-info">
-            <h3>Şükürlü Yusif</h3>
-            <p class="member-year">Doğum ili: 2012</p>
-            <ul class="member-achievements">
-              <li><i class="fas fa-medal"></i> Respublika üçüncüsü (2 dəfə)</li>
-              <li><i class="fas fa-trophy"></i> Bakı Kuboku – 1-ci yer</li>
-              <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-img-wrap">
-            <img src="images/abelfez.jpg" alt="Cavadov Əbəlfəz" loading="lazy" />
-          </div>
-          <div class="member-info">
-            <h3>Cavadov Əbəlfəz</h3>
-            <p class="member-year">Doğum ili: 2013</p>
-            <ul class="member-achievements">
-              <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
-              <li><i class="fas fa-medal"></i> Respublika üçüncüsü</li>
-              <li><i class="fas fa-trophy"></i> Respublika Çempionu</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-<!-- ============================
      PAGE: CHAMPIONS (Çempionlar)
 ============================= -->
 <main id="page-champions" class="page">
@@ -506,15 +449,15 @@
         <div class="title-line"></div>
       </div>
 
-      <div class="members-grid">
-        <div class="member-card">
-          <div class="member-img-wrap">
+      <div class="champions-grid">
+        <div class="champion-card">
+          <div class="champion-img-wrap">
             <img src="images/yusif.jpg" alt="Şükürlü Yusif" loading="lazy" />
           </div>
-          <div class="member-info">
+          <div class="champion-info">
             <h3>Şükürlü Yusif</h3>
-            <p class="member-year">Doğum ili: 2012</p>
-            <ul class="member-achievements">
+            <p class="champion-year">Doğum ili: 2012</p>
+            <ul class="champion-achievements">
               <li><i class="fas fa-medal"></i> Respublika üçüncüsü (2 dəfə)</li>
               <li><i class="fas fa-trophy"></i> Bakı Kuboku – 1-ci yer</li>
               <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
@@ -522,14 +465,73 @@
           </div>
         </div>
 
-        <div class="member-card">
-          <div class="member-img-wrap">
+        <div class="champion-card">
+          <div class="champion-img-wrap">
             <img src="images/abelfez.jpg" alt="Cavadov Əbəlfəz" loading="lazy" />
           </div>
-          <div class="member-info">
+          <div class="champion-info">
             <h3>Cavadov Əbəlfəz</h3>
-            <p class="member-year">Doğum ili: 2013</p>
-            <ul class="member-achievements">
+            <p class="champion-year">Doğum ili: 2013</p>
+            <ul class="champion-achievements">
+              <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
+              <li><i class="fas fa-medal"></i> Respublika üçüncüsü</li>
+              <li><i class="fas fa-trophy"></i> Respublika Çempionu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============================
+     PAGE: ATHLETES (İdmançılar)
+============================= -->
+<main id="page-athletes" class="page">
+  <section class="page-hero small-hero athletes-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>İdmançılar</h1>
+      <p>RM İdman Klubunun iftixarı olan idmançılarımız</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <button class="back-btn" onclick="goBackPage('athletes')">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+      <div class="section-header">
+        <span class="section-tag">İdmançılarımız</span>
+        <h2 class="section-title">Bizim <span>İdmançılar</span></h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="champions-grid">
+        <div class="champion-card">
+          <div class="champion-img-wrap">
+            <img src="images/yusif.jpg" alt="Şükürlü Yusif" loading="lazy" />
+          </div>
+          <div class="champion-info">
+            <h3>Şükürlü Yusif</h3>
+            <p class="champion-year">Doğum ili: 2012</p>
+            <ul class="champion-achievements">
+              <li><i class="fas fa-medal"></i> Respublika üçüncüsü (2 dəfə)</li>
+              <li><i class="fas fa-trophy"></i> Bakı Kuboku – 1-ci yer</li>
+              <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="champion-card">
+          <div class="champion-img-wrap">
+            <img src="images/abelfez.jpg" alt="Cavadov Əbəlfəz" loading="lazy" />
+          </div>
+          <div class="champion-info">
+            <h3>Cavadov Əbəlfəz</h3>
+            <p class="champion-year">Doğum ili: 2013</p>
+            <ul class="champion-achievements">
               <li><i class="fas fa-crown"></i> Bakı Çempionu</li>
               <li><i class="fas fa-medal"></i> Respublika üçüncüsü</li>
               <li><i class="fas fa-trophy"></i> Respublika Çempionu</li>
